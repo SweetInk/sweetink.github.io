@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+    
+    <entry>
+      <title>React-native 采坑记</title>
+      <link href="/2018/02/02/React-native-%E9%87%87%E5%9D%91%E8%AE%B0/"/>
+      <content type="html"><![CDATA[<h3 id="调试时出现错误，找不到index-js-bundle"><a href="#调试时出现错误，找不到index-js-bundle" class="headerlink" title="调试时出现错误，找不到index.js.bundle"></a>调试时出现错误，找不到index.js.bundle</h3><p><code>react-native run-android</code> 当你输入这个命令调试App时候，出现找不到index.js.bundle 文件.</p><p>如何解决呢？打开你的App，Menu-&gt;Dev Settings-&gt;Debugging-&gt;Debug Server host &amp; port for devices</p><p>然后输入你的服务ip和端口，端口通常是8081。</p><p>然后返回到App主界面，Menu-&gt;Reload .这时候App应该能正常显示了</p><h3 id="android-studio-下不执行-gradle中的bundleReleaseJsAndAssets任务"><a href="#android-studio-下不执行-gradle中的bundleReleaseJsAndAssets任务" class="headerlink" title="android studio 下不执行 gradle中的bundleReleaseJsAndAssets任务"></a>android studio 下不执行 gradle中的bundleReleaseJsAndAssets任务</h3><p>导致打包出来的apk启动后出现错误。这是因为没有生成index.js.bundle文件到asset目录</p><p>如何解决:<a href="https://github.com/facebook/react-native/issues/7258" target="_blank" rel="noopener">https://github.com/facebook/react-native/issues/7258</a></p><h3 id="暂时就这些了，后续补充"><a href="#暂时就这些了，后续补充" class="headerlink" title="暂时就这些了，后续补充"></a>暂时就这些了，后续补充</h3>]]></content>
+      
+      <categories>
+          
+          <category> react-native </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> log </tag>
+            
+            <tag> study </tag>
+            
+            <tag> React-native </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>Jsoup简易教程</title>
+      <link href="/2018/01/11/Jsoup%E6%95%99%E7%A8%8B/"/>
+      <content type="html"><![CDATA[<p><img src="https://github.com/docker/dockercraft/raw/master/docs/img/contribute.png?raw=true" alt="img-source-from-https://github.com/docker/dockercraft"></p><p>本文是关于<strong>Jsoup</strong>的简单教程</p><h1 id="目录："><a href="#目录：" class="headerlink" title="目录："></a>目录：</h1><ul><li>Jsoup 简述</li><li>选择器语法</li><li><a href="#jump" title="jump">如何使用</a></li><li><a href="https://try.jsoup.org/" target="_blank" rel="noopener">在线练习</a></li></ul><h1 id="Jsoup-简述"><a href="#Jsoup-简述" class="headerlink" title="Jsoup 简述"></a>Jsoup 简述</h1><h2 id="关于Jsoup："><a href="#关于Jsoup：" class="headerlink" title="关于Jsoup："></a>关于Jsoup：</h2><p><code>jsoup</code>是一个用于处理HTML的Java库。它提供了一种非常方便的API，用于提取和操作数据，使用DOM、CSS和类jquery方法。</p><ul><li>从URL、文件或字符串中提取和解析HTML</li><li>使用DOM遍历或CSS选择器查找和提取数据</li><li>操作HTML元素、属性和文本</li><li>清除用户提交的非安全代码内容，以防止XSS攻击</li><li>输出整洁的HTML</li></ul><p><img src="http://ww3.sinaimg.cn/bmiddle/6af89bc8gw1f8pv18g35rj208z0buaan.jpg" alt="img1"></p><p>获取获取<a href="https://www.qiushibaike.com/text/" target="_blank" rel="noopener">糗事百科</a>最新的段子<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Document doc = Jsoup.connect(<span class="string">"https://www.qiushibaike.com/text/"</span>).get();</div><div class="line">   Elements contentList = doc.select(<span class="string">"div#content-left.col1 a.contentHerf"</span>);<span class="comment">//content area selector</span></div><div class="line">   contentList.forEach(content-&gt;&#123;</div><div class="line">     System.out.println(content.attr(<span class="string">"href"</span>)+<span class="string">":"</span>+content.text());<span class="comment">//parse href attribute and content</span></div><div class="line">   &#125;);</div></pre></td></tr></table></figure></p><p><strong>OpenSource</strong></p><p>jsoup是一个开放源码项目，在<a href="https://github.com/racaljk/hosts/blob/master/LICENSE" target="_blank" rel="noopener">MIT</a>的协议许可下发布。源代码托管在<a href="https://github.com/jhy/jsoup/" target="_blank" rel="noopener">GitHub</a>上</p><h1 id="选择器语法"><a href="#选择器语法" class="headerlink" title="选择器语法"></a>选择器语法</h1><p>使用选择器语法查找元素</p><p>jsoup支持类似于CSS(或JQuery)的选择器方式</p><h2 id="选择器概览"><a href="#选择器概览" class="headerlink" title="选择器概览"></a>选择器概览</h2><ul><li><code>tagname</code>: 通过标签名称查找元素，e.g. <code>a、div、p、span</code>等标签…</li><li><code>ns|tag</code>: 通过命名空间标签查找元素 e.g. <code>fb|name</code>查找<code>&lt;fb:name&gt;</code> 元素</li><li><code>#id</code>: 通过id查找元素, e.g. <code>#logo</code></li><li><code>.class</code>:通过类名查找元素, e.g. <code>.masthead</code></li><li><code>[attribute]</code>: 属性选择器, e.g. <code>[href]</code> 查找属性名为<code>href</code>的元素</li><li><code>[^attr]</code>: 查找已该属性开头的元素, e.g. <code>[^data-]</code> 查找HTML5 <code>dataset</code>属性</li><li><code>[attr=value]</code>: 元素有该属性和值, e.g. <code>[width=500]</code> (或者带分号 <code>[data-name=&#39;launch sequence&#39;]</code>)</li><li><code>[attr^=value], [attr$=value], [attr*=value]</code>: 以元素的属性 开头、结尾、或者属性包含某值e, e.g. <code>[href*=/path/]</code></li><li><code>[attr~=regex]</code>: 属性中包含正则表达式; e.g. <code>img[src~=(?i)\.(png|jpe?g)]</code> 获取所有的img标签，并且图片地址包含(<code>png,jpeg</code>)</li><li><code>*</code>: all elements, e.g. *</li></ul><p><strong>选择器组合</strong></p><ul><li><code>el#id</code>: 某元素有该ID, e.g. <code>div#logo</code></li><li><code>el.class</code>: 某元素有该类, e.g. <code>div.masthead</code></li><li><code>el[attr]</code>: 某元素有该属性, e.g. <code>a[href]</code></li></ul><h1 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a><a name="jump">如何使用</a></h1><ol><li>下载<a href="https://jsoup.org/download" target="_blank" rel="noopener">Jsoup</a>jar包 (1.11.2)</li><li>阅读官方<a href="https://jsoup.org/cookbook/" target="_blank" rel="noopener">Cookbook</a></li></ol><p><img src="http://ww2.sinaimg.cn/bmiddle/9150e4e5ly1fnci898c4lj2064064mx6.jpg" alt="img2"><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//获取开发者头条当日文章</span></div><div class="line">SimpleDateFormat sdf = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd"</span>);</div><div class="line">  String url = <span class="string">"https://toutiao.io/prev/"</span>+sdf.format(<span class="keyword">new</span> Date());</div><div class="line">  System.out.println(<span class="string">"fetch url:"</span>+url);</div><div class="line">  Document doc = Jsoup.connect(url).get();</div><div class="line">  Elements list = doc.select(<span class="string">"div.daily div.post"</span>);</div><div class="line">  System.out.println(<span class="string">"点赞\t\t标题\t\t\t\t\t\t\t\t作者"</span>);</div><div class="line">  list.forEach(post-&gt;&#123;</div><div class="line">    String upVote = post.select(<span class="string">"a.btn.btn-default.like-button"</span>).text();</div><div class="line">    String title = post.select(<span class="string">"h3.title"</span>).text();</div><div class="line">    String author = post.select(<span class="string">"div.subject-name"</span>).text();</div><div class="line">    System.out.println(String.format(<span class="string">"%-4s%-60s%s"</span>,upVote,title,author));</div><div class="line">  &#125;);</div></pre></td></tr></table></figure></p><p>4.开始搞事吧</p><p><img src="http://ww2.sinaimg.cn/bmiddle/9150e4e5gw1fb5is9va1pj208c08c3yh.jpg" alt="img"></p><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul><li><a href="https://jsoup.org" target="_blank" rel="noopener">Jsoup官网</a></li></ul>]]></content>
+      
+      <categories>
+          
+          <category> jsoup </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> log </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>Compile openssl on win10</title>
+      <link href="/2017/11/26/compile-openssl-on-win10/"/>
+      <content type="html"><![CDATA[<h1 id="本次编译环境"><a href="#本次编译环境" class="headerlink" title="本次编译环境"></a>本次编译环境</h1><ol><li>os version:windows 10 professional x64</li><li>JDK1.8</li><li>Perl 5.24.2</li><li>Visual Studio 2017</li><li>NASM 2.12.0.2</li></ol><h1 id="配置环境"><a href="#配置环境" class="headerlink" title="配置环境"></a>配置环境</h1><h2 id="下载perl"><a href="#下载perl" class="headerlink" title="下载perl"></a>下载perl</h2><p>到<a href="https://www.activestate.com/activeperl" target="_blank" rel="noopener">ActiveState.com</a>下载perl并安装<br>如果一切顺利的话<br><figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">C:<span class="symbol">\P</span>erl64<span class="symbol">\e</span>g&gt;cd C:<span class="symbol">\P</span>erl64<span class="symbol">\e</span>g</div><div class="line">C:<span class="symbol">\P</span>erl64<span class="symbol">\e</span>g&gt;perl example.pl</div><div class="line">Hello from ActivePerl!</div><div class="line">C:<span class="symbol">\P</span>erl64<span class="symbol">\e</span>g&gt;</div></pre></td></tr></table></figure></p><h2 id="下载openssl"><a href="#下载openssl" class="headerlink" title="下载openssl"></a>下载openssl</h2><p>下载<a href="https://www.openssl.org/source/" target="_blank" rel="noopener">openssl</a><br>解压至：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">C:\openssl-1.0.2m</div></pre></td></tr></table></figure></p><h2 id="下载NASM"><a href="#下载NASM" class="headerlink" title="下载NASM"></a>下载NASM</h2><p>下载[<a href="http://www.nasm.us/pub/nasm/releasebuilds/2.12.02/win64/" target="_blank" rel="noopener">NASM</a>]，安装后，需要配置path环境变量</p><h1 id="编译openssl"><a href="#编译openssl" class="headerlink" title="编译openssl"></a>编译openssl</h1><ol><li>打开vs Command Prompt</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">**********************************************************************</div><div class="line">** Visual Studio 2017 Developer Command Prompt v15.0.26430.15</div><div class="line">** Copyright (c) 2017 Microsoft Corporation</div><div class="line">**********************************************************************</div><div class="line">[vcvarsall.bat] Environment initialized for: &apos;x64&apos;</div><div class="line"></div><div class="line">C:\Program Files (x86)\Microsoft Visual Studio\2017\Community&gt;cd C:\openssl-1.0.2m</div><div class="line">C:\openssl-1.0.2m&gt;perl Configure VC-WIN64A no-asm --prefix=d:\openssl_lib</div><div class="line">Configuring for VC-WIN64A</div><div class="line">    no-asm          [option]   OPENSSL_NO_ASM</div><div class="line">    no-ec_nistp_64_gcc_128 [default]  OPENSSL_NO_EC_NISTP_64_GCC_128 (skip dir)</div><div class="line">    no-gmp          [default]  OPENSSL_NO_GMP (skip dir)</div><div class="line">    no-jpake        [experimental] OPENSSL_NO_JPAKE (skip dir)</div><div class="line">    no-krb5         [krb5-flavor not specified] OPENSSL_NO_KRB5</div><div class="line">    no-libunbound   [experimental] OPENSSL_NO_LIBUNBOUND (skip dir)</div><div class="line">    no-md2          [default]  OPENSSL_NO_MD2 (skip dir)</div><div class="line">    no-rc5          [default]  OPENSSL_NO_RC5 (skip dir)</div><div class="line">    no-rfc3779      [default]  OPENSSL_NO_RFC3779 (skip dir)</div><div class="line">    no-sctp         [default]  OPENSSL_NO_SCTP (skip dir)</div><div class="line">    no-shared       [default]</div><div class="line">    no-ssl-trace    [default]  OPENSSL_NO_SSL_TRACE (skip dir)</div><div class="line">    no-ssl2         [default]  OPENSSL_NO_SSL2 (skip dir)</div><div class="line">    no-store        [experimental] OPENSSL_NO_STORE (skip dir)</div><div class="line">    no-unit-test    [default]  OPENSSL_NO_UNIT_TEST (skip dir)</div><div class="line">    no-weak-ssl-ciphers [default]  OPENSSL_NO_WEAK_SSL_CIPHERS (skip dir)</div><div class="line">    no-zlib         [default]</div><div class="line">    no-zlib-dynamic [default]</div><div class="line">IsMK1MF=1</div><div class="line">CC            =cl</div><div class="line">CFLAG         =-DOPENSSL_THREADS  -DDSO_WIN32 -W3 -Gs0 -Gy -nologo -DOPENSSL_SYSNAME_WIN32 -DWIN32_LEAN_AND_MEAN -DL_ENDIAN -DUNICODE -D_UNICODE -D_CRT_SECURE_NO_DEPRECATE</div><div class="line">EX_LIBS       =</div><div class="line">CPUID_OBJ     =mem_clr.o</div><div class="line">BN_ASM        =bn_asm.o</div><div class="line">EC_ASM        =</div><div class="line">DES_ENC       =des_enc.o fcrypt_b.o</div><div class="line">AES_ENC       =aes_core.o aes_cbc.o</div><div class="line">BF_ENC        =bf_enc.o</div><div class="line">CAST_ENC      =c_enc.o</div><div class="line">RC4_ENC       =rc4_enc.o rc4_skey.o</div><div class="line">RC5_ENC       =rc5_enc.o</div><div class="line">MD5_OBJ_ASM   =</div><div class="line">SHA1_OBJ_ASM  =</div><div class="line">RMD160_OBJ_ASM=</div><div class="line">CMLL_ENC      =camellia.o cmll_misc.o cmll_cbc.o</div><div class="line">MODES_OBJ     =</div><div class="line">ENGINES_OBJ   =</div><div class="line">PROCESSOR     =</div><div class="line">RANLIB        =true</div><div class="line">ARFLAGS       =</div><div class="line">PERL          =perl</div><div class="line">SIXTY_FOUR_BIT mode</div><div class="line">DES_INT used</div><div class="line">RC4_CHUNK is unsigned long long</div><div class="line"></div><div class="line">Configured for VC-WIN64A.</div><div class="line"></div><div class="line">C:\openssl-1.0.2m&gt;ms\do_win64a</div><div class="line"></div><div class="line">C:\openssl-1.0.2m&gt;goto proceed</div><div class="line"></div><div class="line">C:\openssl-1.0.2m&gt;perl util\mk1mf.pl VC-WIN64A  1&gt;ms\nt.mak</div><div class="line"></div><div class="line">C:\openssl-1.0.2m&gt;perl util\mk1mf.pl dll VC-WIN64A  \1&gt;ms\ntdll.mak</div><div class="line"></div><div class="line">C:\openssl-1.0.2m&gt;perl util\mkdef.pl 32 libeay  1&gt;ms\libeay32.def</div><div class="line"></div><div class="line">C:\openssl-1.0.2m&gt;perl util\mkdef.pl 32 ssleay  1&gt;ms\ssleay32.def</div><div class="line"></div><div class="line">C:\openssl-1.0.2m&gt;nmake -f ms\ntdll.mak</div></pre></td></tr></table></figure><p>最终编译完成后会输出至d:\openssl_lib</p><h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><ol><li><a href="http://blog.csdn.net/u010725842/article/details/50295235" target="_blank" rel="noopener">http://blog.csdn.net/u010725842/article/details/50295235</a></li><li><a href="https://wiki.openssl.org/index.php/Compilation_and_Installation#Windows" target="_blank" rel="noopener">https://wiki.openssl.org/index.php/Compilation_and_Installation#Windows</a></li><li><a href="http://developer.covenanteyes.com/building-openssl-for-visual-studio/" target="_blank" rel="noopener">http://developer.covenanteyes.com/building-openssl-for-visual-studio/</a></li></ol>]]></content>
+      
+      <categories>
+          
+          <category> openssl </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 工具 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>APICloud插件--ChromeInspect</title>
+      <link href="/2017/11/16/APICloud%E6%8F%92%E4%BB%B6-ChromeInspect/"/>
+      <content type="html"><![CDATA[<h1 id="chromeInspect"><a href="#chromeInspect" class="headerlink" title="chromeInspect"></a>chromeInspect</h1><p>让chrome调试你的apicloud应用<br><a href="https://github.com/SweetInk/chromeInspect" target="_blank" rel="noopener">源码地址</a></p><h1 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h1><ul><li><p>1.在apicloud后端打开模块管理，上传模块，然后添加至你当前项目里</p></li><li><p>2.js中使用</p>  <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">apiready = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> ci = api.require(<span class="string">"chromeInspect"</span>);</div><div class="line">    <span class="comment">//开启调试</span></div><div class="line">    ci.enableDebug(<span class="function"><span class="keyword">function</span>(<span class="params">ret,err</span>)</span>&#123;</div><div class="line">      <span class="built_in">console</span>.log(ret);</div><div class="line">    &#125;);</div><div class="line">    <span class="comment">//输出</span></div><div class="line">    <span class="comment">//关闭调试</span></div><div class="line">    ci.disableDebug(<span class="function"><span class="keyword">function</span>(<span class="params">ret,err</span>)</span>&#123;</div><div class="line">      <span class="built_in">console</span>.log(ret);</div><div class="line">    &#125;)</div><div class="line">  &#125;</div></pre></td></tr></table></figure></li></ul><h1 id="系统要求"><a href="#系统要求" class="headerlink" title="系统要求"></a>系统要求</h1><ul><li>android 4.4+</li><li>chrome 最新版</li></ul><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul><li><a href="http://doc.apicloud.com/Module-Dev/module-dev-guide-for-android" target="_blank" rel="noopener">模块开发指南_Android</a></li><li><a href="https://developers.google.com/web/tools/chrome-devtools/remote-debugging/webviews" target="_blank" rel="noopener">远程调试 WebView</a></li></ul>]]></content>
+      
+      <categories>
+          
+          <category> test </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 工具 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>work-log-2017年4月19日18:51:09</title>
+      <link href="/2017/04/19/work-log-2017%E5%B9%B44%E6%9C%8819%E6%97%A518-51-09/"/>
+      <content type="html"><![CDATA[<p>#微信<br>做了微信公众号开发，从数据库，到用户认证，学到很多，包括异构系统服务的调用。</p><p>#前端<br>css，嗯？这个属性我知道，但是实际开发中如何合理运用真的很有学问。<br>Javascript,写的东西感觉不是那么回事儿。得学习下模块化开发</p>]]></content>
+      
+      <categories>
+          
+          <category> test </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> log </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>存储方式-大小端</title>
+      <link href="/2017/03/05/%E5%AD%98%E5%82%A8%E6%96%B9%E5%BC%8F-%E5%A4%A7%E5%B0%8F%E7%AB%AF/"/>
+      <content type="html"><![CDATA[<h1 id="计算机中的存储方式"><a href="#计算机中的存储方式" class="headerlink" title="计算机中的存储方式"></a>计算机中的存储方式</h1><h3 id="大端存储"><a href="#大端存储" class="headerlink" title="大端存储"></a>大端存储</h3><p>低字节存数的高位，高字节存数的低位（即人的正常读取顺序）<br>一个十六进制的数：0x11223344 32位<br>大端模式下：0x 11 22 33 44</p><h3 id="小端存储"><a href="#小端存储" class="headerlink" title="小端存储"></a>小端存储</h3><p>低字节存数的低位，高字节存数的高位(和人的读写顺序相反)<br>小端模式下: 0x 44 33 22 11</p>]]></content>
+      
+      
+    </entry>
+    
+    <entry>
+      <title>work log 2017年2月22日</title>
+      <link href="/2017/02/22/work-log-2017%E5%B9%B42%E6%9C%8822%E6%97%A5/"/>
+      <content type="html"><![CDATA[<h2 id="0x001-问题"><a href="#0x001-问题" class="headerlink" title="0x001 问题"></a>0x001 问题</h2><p>今天修复APP BUG,无意中发现了以前遗留的问题：<br>1.从server 获取到数据后append到ul上，没有清空ul（低级错误啊，竟然没有发现）,导致list越来越长 ==！。</p><h2 id="0x002-收获"><a href="#0x002-收获" class="headerlink" title="0x002 收获"></a>0x002 收获</h2><p> <strong>1.jQuery几种符号选择器的区别（以前也知道，貌似很久没用就忘了，看来得多用啊）</strong></p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">空格：$(<span class="string">'parent childchild'</span>);<span class="comment">//表示获取parent下的所有的childchild节点（所有的子孙）。</span></div><div class="line"></div><div class="line">大于号：$(<span class="string">'parent &gt; child'</span>);<span class="comment">//表示获取parent下的所有child的儿子( 第一代)。</span></div><div class="line"></div><div class="line">加号：$(<span class="string">'pre + nextbrother'</span>);<span class="comment">//表示获得pre节点的下一个兄弟节点，相当于next()方法</span></div><div class="line"></div><div class="line">波浪号：$(<span class="string">'pre ~ brother'</span>);<span class="comment">//表示获取pre节点的后面的所有兄弟节点，相当于nextAll()方法。</span></div></pre></td></tr></table></figure><p>原文：<a href="http://my.oschina.net/jsonavaj/blog/62630" title="原文" target="_blank" rel="noopener">http://my.oschina.net/jsonavaj/blog/62630</a></p><p><strong>2.Jquey删除掉元素前先过滤：</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">element_list.not(<span class="string">":first"</span>).remove();<span class="comment">//移除除第一个以外的所有元素</span></div><div class="line"></div><div class="line">element_list.not(<span class="string">":eq(0)"</span>).remove();</div><div class="line"></div><div class="line">element_list.filter(<span class="function"><span class="keyword">function</span>(<span class="params">index</span>)</span>&#123;</div><div class="line"><span class="keyword">return</span> index%<span class="number">2</span>==<span class="number">0</span>;</div><div class="line">&#125;).remove();</div></pre></td></tr></table></figure></p><p><strong>3.MSSQL 的update from 语法</strong><br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">update</span> a <span class="keyword">set</span> a.fk_name = b.name <span class="keyword">from</span> a,b <span class="keyword">where</span> a.fid = b.id</div></pre></td></tr></table></figure></p>]]></content>
+      
+      
+    </entry>
+    
+    <entry>
+      <title>深夜踩坑</title>
+      <link href="/2017/02/18/%E6%B7%B1%E5%A4%9C%E8%B8%A9%E5%9D%91/"/>
+      <content type="html"><![CDATA[<h2 id="1-深夜踩坑"><a href="#1-深夜踩坑" class="headerlink" title="1.深夜踩坑"></a>1.深夜踩坑</h2><p>安装nodejs后依次安装cnpm,hexo<br><code>hexo -v</code><br>发现找不到hexo命令，原因是没有把node_module添加到环境变量下。<br><code>hexo g -d //发布到GitHub上</code></p>]]></content>
+      
+      
+    </entry>
+    
+    <entry>
+      <title>post test</title>
+      <link href="/2017/01/22/post-test/"/>
+      <content type="html"><![CDATA[<h2 id="坑1"><a href="#坑1" class="headerlink" title="坑1"></a>坑1</h2><p>如果直接把CNAME放到.deploy_git。当使用hexo d 部署时，会导致CNAME被删除掉。</p><h1 id="坑2"><a href="#坑2" class="headerlink" title="坑2"></a>坑2</h1><p>_config.yml中把language设置为zh-CN时，使用next主题导致网页内容变成德语，应该设置为zh-Hans<br><a href="https://www.zhihu.com/question/41625825/answer/91769304" target="_blank" rel="noopener">https://www.zhihu.com/question/41625825/answer/91769304</a></p>]]></content>
+      
+      
+    </entry>
+    
+    <entry>
+      <title>Hello World</title>
+      <link href="/2017/01/22/hello-world/"/>
+      <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
+      
+      
+    </entry>
+    
+  
+  
+    
+    <entry>
+      <title></title>
+      <link href="/404.html"/>
+      <content type="html"><![CDATA[<!DOCTYPE HTML><html><head>  <meta http-equiv="content-type" content="text/html;charset=utf-8;">  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">  <meta name="robots" content="all">  <meta name="robots" content="index,follow"></head><body><script type="text/javascript" src="http://www.qq.com/404/search_children.js" charset="utf-8" homepageurl="http://githuboy.online" homepagename="回到我的主页"></script></body></html>]]></content>
+    </entry>
+    
+    <entry>
+      <title>tags</title>
+      <link href="/tags/index.html"/>
+      <content type="html"><![CDATA[]]></content>
+    </entry>
+    
+  
+</search>
