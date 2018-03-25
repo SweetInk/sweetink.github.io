@@ -3,6 +3,30 @@
   
     
     <entry>
+      <title>react-native中使用SockJs和StompJs</title>
+      <link href="/2018/03/21/react-native%E4%B8%AD%E4%BD%BF%E7%94%A8SockJs%E5%92%8CStompJs/"/>
+      <content type="html"><![CDATA[<p><strong>本文梳理在使用过程中遇到的坑点（Android）</strong></p><h1 id="在项目中加入SockJs-和-StompJs"><a href="#在项目中加入SockJs-和-StompJs" class="headerlink" title="在项目中加入SockJs 和 StompJs"></a>在项目中加入SockJs 和 StompJs</h1><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  "name": "websocketDemo",</div><div class="line">  "version": "0.0.1",</div><div class="line">  "private": true,</div><div class="line">  "scripts": &#123;</div><div class="line">    "start": "node node_modules/react-native/local-cli/cli.js start",</div><div class="line">    "test": "jest"</div><div class="line">  &#125;,</div><div class="line">  "dependencies": &#123;</div><div class="line">    "react": "16.3.0-alpha.1",</div><div class="line">    ***"react-native": "0.54.2",***</div><div class="line">    "sockjs-client": "1.1.4",</div><div class="line">    "stompjs": "^2.3.3"</div><div class="line">  &#125;,</div><div class="line">  "devDependencies": &#123;</div><div class="line">    "babel-jest": "23.0.0-alpha.0",</div><div class="line">    "babel-preset-react-native": "4.0.0",</div><div class="line">    "jest": "22.4.2",</div><div class="line">    "react-test-renderer": "16.3.0-alpha.1"</div><div class="line">  &#125;,</div><div class="line">  "jest": &#123;</div><div class="line">    "preset": "react-native"</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure><p>然后在App.js中使用</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//引入SockJs和 Stompjs</span></div><div class="line"><span class="keyword">import</span> SockJs <span class="keyword">from</span> <span class="string">'sockjs-client'</span></div><div class="line"><span class="keyword">import</span> &#123;Stomp&#125; <span class="keyword">from</span> <span class="string">'stompjs/lib/stomp'</span></div><div class="line"><span class="comment">//此处省略</span></div><div class="line"><span class="keyword">var</span> host = <span class="string">''</span>;<span class="comment">//ws服务器ip:port</span></div><div class="line"><span class="keyword">var</span> endpoint = <span class="string">''</span>;<span class="comment">//提供ws服务的端点名称</span></div><div class="line"><span class="keyword">var</span> socket = <span class="keyword">new</span> SockJs(<span class="string">`<span class="subst">$&#123;host&#125;</span>/<span class="subst">$&#123;endpoint&#125;</span>`</span>);</div><div class="line"><span class="keyword">var</span> stompClient = Stomp.over(socket);</div><div class="line"><span class="comment">//此处继续省略</span></div><div class="line"><span class="comment">//然后你满心欢喜的去连接</span></div><div class="line"> stompClient.connect(<span class="string">'guest'</span>, <span class="string">'guest'</span>, (frame) =&gt; &#123;</div><div class="line">   <span class="built_in">console</span>.log(<span class="string">'frame'</span>,frame);</div><div class="line">   <span class="comment">//TOOD 处理的逻辑eg.subscribe topic</span></div><div class="line"> &#125;</div></pre></td></tr></table></figure><p>然后在android设备中调试 <code>react-native run-android</code><br><img src="./img/p1.png" alt="img-source-from-https://github.com/docker/dockercraft"></p>]]></content>
+      
+      <categories>
+          
+          <category> react-native </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> log </tag>
+            
+            <tag> study </tag>
+            
+            <tag> React-native </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>React-native 采坑记</title>
       <link href="/2018/02/02/React-native-%E9%87%87%E5%9D%91%E8%AE%B0/"/>
       <content type="html"><![CDATA[<h3 id="调试时出现错误，找不到index-js-bundle"><a href="#调试时出现错误，找不到index-js-bundle" class="headerlink" title="调试时出现错误，找不到index.js.bundle"></a>调试时出现错误，找不到index.js.bundle</h3><p><code>react-native run-android</code> 当你输入这个命令调试App时候，出现找不到index.js.bundle 文件.</p><p>如何解决呢？打开你的App，Menu-&gt;Dev Settings-&gt;Debugging-&gt;Debug Server host &amp; port for devices</p><p>然后输入你的服务ip和端口，端口通常是8081。</p><p>然后返回到App主界面，Menu-&gt;Reload .这时候App应该能正常显示了</p><h3 id="android-studio-下不执行-gradle中的bundleReleaseJsAndAssets任务"><a href="#android-studio-下不执行-gradle中的bundleReleaseJsAndAssets任务" class="headerlink" title="android studio 下不执行 gradle中的bundleReleaseJsAndAssets任务"></a>android studio 下不执行 gradle中的bundleReleaseJsAndAssets任务</h3><p>导致打包出来的apk启动后出现错误。这是因为没有生成index.js.bundle文件到asset目录</p><p>如何解决:<a href="https://github.com/facebook/react-native/issues/7258" target="_blank" rel="noopener">https://github.com/facebook/react-native/issues/7258</a></p><h3 id="暂时就这些了，后续补充"><a href="#暂时就这些了，后续补充" class="headerlink" title="暂时就这些了，后续补充"></a>暂时就这些了，后续补充</h3>]]></content>
