@@ -14,7 +14,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-CN">
+<html class="theme-next pisces use-motion" lang="zh-CN">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -70,7 +70,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Pisces',
     version: '7.1.0',
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
     back2top: true,
@@ -231,6 +231,23 @@
         
         
           
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
           <li class="menu-item menu-item-archives">
 
     
@@ -249,9 +266,6 @@
       
     </ul>
   
-
-  
-    
 
   
 
@@ -273,6 +287,9 @@
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
+            
+
           
           <div id="content" class="content">
             
@@ -338,12 +355,24 @@
                 
               
 
-              <time title="创建时间：2019-03-27 09:15:00 / 修改时间：09:25:31" itemprop="dateCreated datePublished" datetime="2019-03-27T09:15:00+08:00">2019-03-27</time>
+              <time title="创建时间：2019-03-27 09:15:00" itemprop="dateCreated datePublished" datetime="2019-03-27T09:15:00+08:00">2019-03-27</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-18 13:41:57" itemprop="dateModified" datetime="2019-04-18T13:41:57+08:00">2019-04-18</time>
               
             
           </span>
@@ -397,7 +426,7 @@
       
         
           
-            <p>图片<br><img src="./img/scan_login.png" alt="SCAN_LOGIN."></p>
+            <p>图片<br><img src="./img/jd_login_flow.jpg" alt="SCAN_LOGIN."></p>
 
           
         
@@ -654,7 +683,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-11-03 21:39:33" itemprop="dateModified" datetime="2018-11-03T21:39:33+08:00">2018-11-03</time>
+                <time title="修改时间：2019-04-18 14:06:26" itemprop="dateModified" datetime="2019-04-18T14:06:26+08:00">2019-04-18</time>
               
             
           </span>
@@ -707,22 +736,20 @@
 
       
         
+          <h1 id="npm使用总结"><a href="#npm使用总结" class="headerlink" title="npm使用总结"></a>npm使用总结</h1><ol>
+<li>当你准备发布你的包到npmjs时，首先得<code>npm login</code>(只需一次).
+          <!--noindex-->
           
-            <h1 id="npm使用总结"><a href="#npm使用总结" class="headerlink" title="npm使用总结"></a>npm使用总结</h1><ol>
-<li>当你准备发布你的包到npmjs时，首先得<code>npm login</code>(只需一次).</li>
-<li>当你执行<code>npm publish</code> 时,不妨先执行 <code>npm pack</code> ，看看打包出来的dist文件是否和预期一样。</li>
-<li>当你因为某个错误的操作，导致把一些错误的东西发布到npmjs（比如说我)，这个时候你莫慌.只需把错误的版本设置为<code>deprecate</code>,使用命令 <code>npm deprecate &lt;pkg&gt;[@&lt;version&gt;] &lt;message&gt;</code></li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm deprecate <span class="built_in">test</span>@0.0.1 <span class="string">"此版本作废"</span></span><br></pre></td></tr></table></figure>
-<h1 id="nginx配置Websocket代理-SSL"><a href="#nginx配置Websocket代理-SSL" class="headerlink" title="nginx配置Websocket代理 + SSL"></a>nginx配置Websocket代理 + SSL</h1><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">http&#123;</span><br><span class="line">  </span><br><span class="line">  server&#123;</span><br><span class="line">    </span><br><span class="line">     <span class="attribute">listen</span> <span class="number">443</span> ssl;</span><br><span class="line">     <span class="attribute">server_name</span> ws.yourdomain.com;</span><br><span class="line">     ssl_certificate      /opt/cert/s.crt;//RSA public key</span><br><span class="line">     ssl_certificate_key  /opt/cert/s.key;//RSA private key</span><br><span class="line">     <span class="attribute">ssl_session_cache</span>    shared:SSL:<span class="number">1m</span>;</span><br><span class="line">     <span class="attribute">ssl_protocols</span>  SSLv2 SSLv3 TLSv1;</span><br><span class="line">     <span class="attribute">ssl_session_cache</span>    shared:SSL:<span class="number">1m</span>;</span><br><span class="line">     <span class="attribute">ssl_session_timeout</span>  <span class="number">5m</span>;</span><br><span class="line">     <span class="attribute">ssl_ciphers</span>  ALL:!ADH:!EXPORT56:RC4+RSA:+HIGH:+MEDIUM:+LOW:+SSLv3:+EXP;</span><br><span class="line">     <span class="attribute">ssl_prefer_server_ciphers</span>   <span class="literal">on</span>;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">location</span> /websocket &#123;</span><br><span class="line">      <span class="attribute">proxy_pass</span> http://127.0.0.1:8081;</span><br><span class="line">      <span class="attribute">proxy_http_version</span> <span class="number">1</span>.<span class="number">1</span>;</span><br><span class="line">      <span class="attribute">proxy_set_header</span> Upgrade <span class="variable">$http_upgrade</span>;</span><br><span class="line">      <span class="attribute">proxy_set_header</span> Connection <span class="string">"Upgrade"</span>;</span><br><span class="line">      <span class="attribute">proxy_set_header</span> Host <span class="variable">$host</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://www.cnblogs.com/penghuwan/p/6973702.html" target="_blank" rel="noopener">https://www.cnblogs.com/penghuwan/p/6973702.html</a></p>
-<p><a href="http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_certificate" target="_blank" rel="noopener">http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_certificate</a></p>
-<p><a href="http://nginx.org/en/docs/http/websocket.html" target="_blank" rel="noopener">http://nginx.org/en/docs/http/websocket.html</a></p>
-
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/09/20/work-log-2018年9月20日/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
           
+          <!--/noindex-->
         
       
-    </div>
+    </li></ol></div>
 
     
 
@@ -836,7 +863,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-09-12 23:14:59" itemprop="dateModified" datetime="2018-09-12T23:14:59+08:00">2018-09-12</time>
+                <time title="修改时间：2019-04-18 14:06:33" itemprop="dateModified" datetime="2019-04-18T14:06:33+08:00">2019-04-18</time>
               
             
           </span>
@@ -889,17 +916,19 @@
 
       
         
-          
-            <h2 id="关于"><a href="#关于" class="headerlink" title="关于"></a>关于</h2><blockquote>
+          <h2 id="关于"><a href="#关于" class="headerlink" title="关于"></a>关于</h2><blockquote>
 <p>维基百科</p>
 </blockquote>
 <p><strong>Brainfuck</strong>，是一种极小化的<a href="https://zh.wikipedia.org/wiki/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80" target="_blank" rel="noopener">计算机语言</a>，它是由<a href="https://zh.wikipedia.org/w/index.php?title=Urban_M%C3%BCller&amp;action=edit&amp;redlink=1" target="_blank" rel="noopener">Urban Müller</a>在1993年创造的。由于<a href="https://zh.wikipedia.org/wiki/Fuck" target="_blank" rel="noopener">fuck</a>在<a href="https://zh.wikipedia.org/wiki/%E8%8B%B1%E8%AA%9E" target="_blank" rel="noopener">英语</a>中是<a href="https://zh.wikipedia.org/wiki/%E9%AB%92%E8%A9%B1" target="_blank" rel="noopener">脏话</a>，这种语言有时被称为<strong>Brainf*ck</strong>或<strong>Brainf***</strong>，或被简称为<strong>BF</strong>。</p>
-<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>主要逻辑如下<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">while</span>(src not eof)&#123;</span><br><span class="line"> opcode  = fetchCode();<span class="comment">//从source读入单个字符</span></span><br><span class="line"> interprete(opcode);<span class="comment">//根据opcode的语言翻译</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//switch case....</span></span><br><span class="line"><span class="keyword">void</span> interprete(opcode)&#123;</span><br><span class="line">  <span class="keyword">switch</span>(opcode)&#123;</span><br><span class="line">      <span class="keyword">case</span> ....</span><br><span class="line">       ....</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>最后java实现的<a href="https://github.com/SweetInk/brainfuck" target="_blank" rel="noopener">brainfuck</a></p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://zh.wikipedia.org/wiki/Brainfuck" target="_blank" rel="noopener">维基百科</a></p>
-<p><a href="https://gist.github.com/roachhd/dce54bec8ba55fb17d3a" target="_blank" rel="noopener">Basics of BrainFuck</a></p>
-
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/09/05/brainfuck/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -999,12 +1028,24 @@
                 
               
 
-              <time title="创建时间：2018-05-10 19:35:58 / 修改时间：20:43:22" itemprop="dateCreated datePublished" datetime="2018-05-10T19:35:58+08:00">2018-05-10</time>
+              <time title="创建时间：2018-05-10 19:35:58" itemprop="dateCreated datePublished" datetime="2018-05-10T19:35:58+08:00">2018-05-10</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-18 14:06:41" itemprop="dateModified" datetime="2019-04-18T14:06:41+08:00">2019-04-18</time>
               
             
           </span>
@@ -1057,17 +1098,19 @@
 
       
         
+          <h1 id="0x01-申明"><a href="#0x01-申明" class="headerlink" title="0x01  申明"></a>0x01  申明</h1><p>本文内容仅供学习交流使用<br>
+          <!--noindex-->
           
-            <h1 id="0x01-申明"><a href="#0x01-申明" class="headerlink" title="0x01  申明"></a>0x01  申明</h1><p>本文内容仅供学习交流使用</p>
-<h1 id="0x02-开始"><a href="#0x02-开始" class="headerlink" title="0x02 开始"></a>0x02 开始</h1><p>先上代码吧，后续分析。</p>
-<p><a href="https://github.com/SweetInk/Douyu-Analysis" title="https://github.com/SweetInk/Douyu-Analysis" target="_blank" rel="noopener">Douyu-Analysis</a></p>
-<h1 id="0xFF-参考文章"><a href="#0xFF-参考文章" class="headerlink" title="0xFF 参考文章"></a>0xFF 参考文章</h1><p><a href="https://help.adobe.com/zh_CN/ActionScript/3.0_ProgrammingAS3/WS5b3ccc516d4fbf351e63e3d118a9b8cf79-8000.html" title="ActionScript3 快速入门" target="_blank" rel="noopener">https://help.adobe.com/zh_CN/ActionScript/3.0_ProgrammingAS3/WS5b3ccc516d4fbf351e63e3d118a9b8cf79-8000.html</a></p>
-<p><a href="http://gslab.qq.com/article-467-1.html" title="http://gslab.qq.com/article-467-1.html" target="_blank" rel="noopener">http://gslab.qq.com/article-467-1.html</a></p>
-
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/05/10/Douyu-Live-corenormal-swf-decrypt/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
           
+          <!--/noindex-->
         
       
-    </div>
+    </p></div>
 
     
 
@@ -1181,7 +1224,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-03-25 19:42:22" itemprop="dateModified" datetime="2018-03-25T19:42:22+08:00">2018-03-25</time>
+                <time title="修改时间：2019-04-18 14:04:31" itemprop="dateModified" datetime="2019-04-18T14:04:31+08:00">2019-04-18</time>
               
             
           </span>
@@ -1234,34 +1277,19 @@
 
       
         
+          <p><strong>本文梳理在使用过程中遇到的坑点（Android）</strong><br>
+          <!--noindex-->
           
-            <p><strong>本文梳理在使用过程中遇到的坑点（Android）</strong></p>
-<h1 id="开始使用"><a href="#开始使用" class="headerlink" title="开始使用"></a>开始使用</h1><p><code>package.json</code><br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"name"</span>: <span class="string">"websocketDemo"</span>,</span><br><span class="line">  <span class="attr">"version"</span>: <span class="string">"0.0.1"</span>,</span><br><span class="line">  <span class="attr">"private"</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">"scripts"</span>: &#123;</span><br><span class="line">    <span class="attr">"start"</span>: <span class="string">"node node_modules/react-native/local-cli/cli.js start"</span>,</span><br><span class="line">    <span class="attr">"test"</span>: <span class="string">"jest"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"dependencies"</span>: &#123;</span><br><span class="line">    <span class="attr">"react"</span>: <span class="string">"16.3.0-alpha.1"</span>,</span><br><span class="line">    <span class="attr">"react-native"</span>: <span class="string">"0.54.2"</span>,</span><br><span class="line">    <span class="attr">"sockjs-client"</span>: <span class="string">"1.1.4"</span>,</span><br><span class="line">    <span class="attr">"stompjs"</span>: <span class="string">"^2.3.3"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"devDependencies"</span>: &#123;</span><br><span class="line">    <span class="attr">"babel-jest"</span>: <span class="string">"23.0.0-alpha.0"</span>,</span><br><span class="line">    <span class="attr">"babel-preset-react-native"</span>: <span class="string">"4.0.0"</span>,</span><br><span class="line">    <span class="attr">"jest"</span>: <span class="string">"22.4.2"</span>,</span><br><span class="line">    <span class="attr">"react-test-renderer"</span>: <span class="string">"16.3.0-alpha.1"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"jest"</span>: &#123;</span><br><span class="line">    <span class="attr">"preset"</span>: <span class="string">"react-native"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>然后在App.js中使用</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//引入SockJs和 Stompjs</span></span><br><span class="line"><span class="keyword">import</span> SockJs <span class="keyword">from</span> <span class="string">'sockjs-client'</span></span><br><span class="line"><span class="keyword">import</span> &#123;Stomp&#125; <span class="keyword">from</span> <span class="string">'stompjs/lib/stomp'</span></span><br><span class="line"><span class="comment">//此处省略</span></span><br><span class="line"><span class="keyword">var</span> host = <span class="string">''</span>;<span class="comment">//ws服务器ip:port</span></span><br><span class="line"><span class="keyword">var</span> endpoint = <span class="string">''</span>;<span class="comment">//提供ws服务的端点名称</span></span><br><span class="line"><span class="keyword">var</span> socket = <span class="keyword">new</span> SockJs(<span class="string">`<span class="subst">$&#123;host&#125;</span>/<span class="subst">$&#123;endpoint&#125;</span>`</span>);</span><br><span class="line"><span class="keyword">var</span> stompClient = Stomp.over(socket);</span><br><span class="line"><span class="comment">//此处继续省略</span></span><br><span class="line"><span class="comment">//然后你满心欢喜的去连接</span></span><br><span class="line"> stompClient.connect(<span class="string">'guest'</span>, <span class="string">'guest'</span>, (frame) =&gt; &#123;</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="string">'frame'</span>,frame);</span><br><span class="line">   <span class="comment">//TOOD 处理的逻辑eg.subscribe topic</span></span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-<h1 id="产生问题"><a href="#产生问题" class="headerlink" title="产生问题"></a>产生问题</h1><p>然后在android设备中调试 <code>react-native run-android</code><br> 不出意外启动你的App后你会看到以下场景<br><img src="./img/error.jpg" alt="ERROR-IMG"></p>
-<p><strong>根据出错信息推断，应该是js的参数映射到java方法的形参上出现了类型转换错误 </strong></p>
-<p>接着跟着App提示的信息调试代码<br><img src="./img/p2.png" alt="P2"></p>
-<p>从图中我们可以看出，该方法的参数列表应该使我们实例化SockJs传入的url</p>
-<p>再观察图中的traceName 映射到<code>ReactNative</code> <code>Networking</code>模块中的<code>sendRequet</code>方法</p>
-<p>查看<a href="https://github.com/facebook/react-native/blob/master/ReactAndroid/src/main/java/com/facebook/react/modules/network/NetworkingModule.java#L238" title="NetworkingModule" target="_blank" rel="noopener">NetworkingModule</a>(该模块实现了js中的<code>XMLHttpRequest</code>接口)源码发现，最后一个参数的类型为<code>boolean</code><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ReactMethod</span></span><br><span class="line"> <span class="comment">/**</span></span><br><span class="line"><span class="comment">  * <span class="doctag">@param</span> timeout value of 0 results in no timeout</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sendRequest</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">     String method,</span></span></span><br><span class="line"><span class="function"><span class="params">     String url,</span></span></span><br><span class="line"><span class="function"><span class="params">     <span class="keyword">final</span> <span class="keyword">int</span> requestId,</span></span></span><br><span class="line"><span class="function"><span class="params">     ReadableArray headers,</span></span></span><br><span class="line"><span class="function"><span class="params">     ReadableMap data,</span></span></span><br><span class="line"><span class="function"><span class="params">     <span class="keyword">final</span> String responseType,</span></span></span><br><span class="line"><span class="function"><span class="params">     <span class="keyword">final</span> <span class="keyword">boolean</span> useIncrementalUpdates,</span></span></span><br><span class="line"><span class="function"><span class="params">     <span class="keyword">int</span> timeout,</span></span></span><br><span class="line"><span class="function"><span class="params">     <span class="keyword">boolean</span> withCredentials)</span></span></span><br></pre></td></tr></table></figure></p>
-<p>然而我们实际参数为<br><code>[&quot;GET&quot;,&quot;http://192.168.0.101:8080/wechat-custom-msg/info?t=1521610071602&quot;,1,[],{&quot;trackingName&quot;:&quot;unknown&quot;},&quot;text&quot;,true,0,&quot;true&quot;]</code></p>
-<p>很明显最后一个参数是一个字符串,所以导致了解析参数时</p>
-<p><img src="./img/p3.png" alt="P3."><br>出现的<code>java.lang.String cannot be cast to java.lang.Boolean</code></p>
-<p>可以推断是SockJs发起了XHR请求导致App出现了这个问题<br>最后找到SockJs中的abstract-xhr.js源码</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ((!opts || !opts.noCredentials) &amp;&amp; AbstractXHRObject.supportsCORS) &#123;</span><br><span class="line">   debug(<span class="string">'withCredentials'</span>);</span><br><span class="line">   <span class="comment">// Mozilla docs says https://developer.mozilla.org/en/XMLHttpRequest :</span></span><br><span class="line">   <span class="comment">// "This never affects same-site requests."</span></span><br><span class="line"></span><br><span class="line">   <span class="keyword">this</span>.xhr.withCredentials = <span class="string">'true'</span>;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-<p>很明显问题就出在这儿。<br>查看mozilla官网中对XMLHttpRequest的<a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/withCredentials" title="API" target="_blank" rel="noopener">API</a>描述</p>
-<p><code>The XMLHttpRequest.withCredentials property is a Boolean that indicates whether or not cross-site Access-Control requests should be made using credentials such as cookies, authorization headers or TLS client certificates. Setting withCredentials has no effect on same-site requests.</code></p>
-<h1 id="如何解决"><a href="#如何解决" class="headerlink" title="如何解决"></a>如何解决</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.xhr.withCredentials = <span class="literal">true</span>;</span><br></pre></td></tr></table></figure>
-<ol>
-<li>将<code>&quot;true&quot;</code>改为Boolean类型的<code>true</code></li>
-<li>或者到<code>你的项目路径/node_modules/sockjs-client</code> 目录中使用<code>gulp</code>重新编译<br>找到sockjs</li>
-</ol>
-
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/03/21/react-native中使用SockJs和StompJs/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
           
+          <!--/noindex-->
         
       
-    </div>
+    </p></div>
 
     
 
@@ -1553,7 +1581,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-03-02 21:15:22" itemprop="dateModified" datetime="2018-03-02T21:15:22+08:00">2018-03-02</time>
+                <time title="修改时间：2019-04-18 14:05:33" itemprop="dateModified" datetime="2019-04-18T14:05:33+08:00">2019-04-18</time>
               
             
           </span>
@@ -1606,62 +1634,20 @@
 
       
         
+          <p><img src="https://github.com/docker/dockercraft/raw/master/docs/img/contribute.png?raw=true" alt="img-source-from-https://github.com/docker/dockercraft"></p>
+<p>本文是关于<strong>Jsoup</strong>的简单教程<br>
+          <!--noindex-->
           
-            <p><img src="https://github.com/docker/dockercraft/raw/master/docs/img/contribute.png?raw=true" alt="img-source-from-https://github.com/docker/dockercraft"></p>
-<p>本文是关于<strong>Jsoup</strong>的简单教程</p>
-<h1 id="目录："><a href="#目录：" class="headerlink" title="目录："></a>目录：</h1><ul>
-<li>Jsoup 简述</li>
-<li>选择器语法</li>
-<li><a href="#jump" title="jump">如何使用</a></li>
-<li><a href="https://try.jsoup.org/" target="_blank" rel="noopener">在线练习</a></li>
-</ul>
-<h1 id="Jsoup-简述"><a href="#Jsoup-简述" class="headerlink" title="Jsoup 简述"></a>Jsoup 简述</h1><h2 id="关于Jsoup："><a href="#关于Jsoup：" class="headerlink" title="关于Jsoup："></a>关于Jsoup：</h2><p><code>jsoup</code>是一个用于处理HTML的Java库。它提供了一种非常方便的API，用于提取和操作数据，使用DOM、CSS和类jquery方法。</p>
-<ul>
-<li>从URL、文件或字符串中提取和解析HTML</li>
-<li>使用DOM遍历或CSS选择器查找和提取数据</li>
-<li>操作HTML元素、属性和文本</li>
-<li>清除用户提交的非安全代码内容，以防止XSS攻击</li>
-<li>输出整洁的HTML</li>
-</ul>
-<p><img src="http://ww3.sinaimg.cn/bmiddle/6af89bc8gw1f8pv18g35rj208z0buaan.jpg" alt="img1"></p>
-<p>获取获取<a href="https://www.qiushibaike.com/text/" target="_blank" rel="noopener">糗事百科</a>最新的段子<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Document doc = Jsoup.connect(<span class="string">"https://www.qiushibaike.com/text/"</span>).get();</span><br><span class="line">   Elements contentList = doc.select(<span class="string">"div#content-left.col1 a.contentHerf"</span>);<span class="comment">//content area selector</span></span><br><span class="line">   contentList.forEach(content-&gt;&#123;</span><br><span class="line">     System.out.println(content.attr(<span class="string">"href"</span>)+<span class="string">":"</span>+content.text());<span class="comment">//parse href attribute and content</span></span><br><span class="line">   &#125;);</span><br></pre></td></tr></table></figure></p>
-<p><strong>OpenSource</strong></p>
-<p>jsoup是一个开放源码项目，在<a href="https://github.com/racaljk/hosts/blob/master/LICENSE" target="_blank" rel="noopener">MIT</a>的协议许可下发布。源代码托管在<a href="https://github.com/jhy/jsoup/" target="_blank" rel="noopener">GitHub</a>上</p>
-<h1 id="选择器语法"><a href="#选择器语法" class="headerlink" title="选择器语法"></a>选择器语法</h1><p>使用选择器语法查找元素</p>
-<p>jsoup支持类似于CSS(或JQuery)的选择器方式</p>
-<h2 id="选择器概览"><a href="#选择器概览" class="headerlink" title="选择器概览"></a>选择器概览</h2><ul>
-<li><code>tagname</code>: 通过标签名称查找元素，e.g. <code>a、div、p、span</code>等标签…</li>
-<li><code>ns|tag</code>: 通过命名空间标签查找元素 e.g. <code>fb|name</code>查找<code>&lt;fb:name&gt;</code> 元素</li>
-<li><code>#id</code>: 通过id查找元素, e.g. <code>#logo</code></li>
-<li><code>.class</code>:通过类名查找元素, e.g. <code>.masthead</code></li>
-<li><code>[attribute]</code>: 属性选择器, e.g. <code>[href]</code> 查找属性名为<code>href</code>的元素</li>
-<li><code>[^attr]</code>: 查找已该属性开头的元素, e.g. <code>[^data-]</code> 查找HTML5 <code>dataset</code>属性</li>
-<li><code>[attr=value]</code>: 元素有该属性和值, e.g. <code>[width=500]</code> (或者带分号 <code>[data-name=&#39;launch sequence&#39;]</code>)</li>
-<li><code>[attr^=value], [attr$=value], [attr*=value]</code>: 以元素的属性 开头、结尾、或者属性包含某值e, e.g. <code>[href*=/path/]</code></li>
-<li><code>[attr~=regex]</code>: 属性中包含正则表达式; e.g. <code>img[src~=(?i)\.(png|jpe?g)]</code> 获取所有的img标签，并且图片地址包含(<code>png,jpeg</code>)</li>
-<li><code>*</code>: all elements, e.g. *</li>
-</ul>
-<p><strong>选择器组合</strong></p>
-<ul>
-<li><code>el#id</code>: 某元素有该ID, e.g. <code>div#logo</code></li>
-<li><code>el.class</code>: 某元素有该类, e.g. <code>div.masthead</code></li>
-<li><code>el[attr]</code>: 某元素有该属性, e.g. <code>a[href]</code></li>
-</ul>
-<h1 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a><a name="jump">如何使用</a></h1><ol>
-<li>下载<a href="https://jsoup.org/download" target="_blank" rel="noopener">Jsoup</a>jar包 (1.11.2)</li>
-<li>阅读官方<a href="https://jsoup.org/cookbook/" target="_blank" rel="noopener">Cookbook</a></li>
-</ol>
-<p><img src="http://ww2.sinaimg.cn/bmiddle/9150e4e5ly1fnci898c4lj2064064mx6.jpg" alt="img2"><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取开发者头条当日文章</span></span><br><span class="line">SimpleDateFormat sdf = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd"</span>);</span><br><span class="line">  String url = <span class="string">"https://toutiao.io/prev/"</span>+sdf.format(<span class="keyword">new</span> Date());</span><br><span class="line">  System.out.println(<span class="string">"fetch url:"</span>+url);</span><br><span class="line">  Document doc = Jsoup.connect(url).get();</span><br><span class="line">  Elements list = doc.select(<span class="string">"div.daily div.post"</span>);</span><br><span class="line">  System.out.println(<span class="string">"点赞\t\t标题\t\t\t\t\t\t\t\t作者"</span>);</span><br><span class="line">  list.forEach(post-&gt;&#123;</span><br><span class="line">    String upVote = post.select(<span class="string">"a.btn.btn-default.like-button"</span>).text();</span><br><span class="line">    String title = post.select(<span class="string">"h3.title"</span>).text();</span><br><span class="line">    String author = post.select(<span class="string">"div.subject-name"</span>).text();</span><br><span class="line">    System.out.println(String.format(<span class="string">"%-4s%-60s%s"</span>,upVote,title,author));</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure></p>
-<p>4.开始搞事吧</p>
-<p><img src="http://ww2.sinaimg.cn/bmiddle/9150e4e5gw1fb5is9va1pj208c08c3yh.jpg" alt="img"></p>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
-<li><a href="https://jsoup.org" target="_blank" rel="noopener">Jsoup官网</a></li>
-</ul>
-
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/01/11/Jsoup教程/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
           
+          <!--/noindex-->
         
       
-    </div>
+    </p></div>
 
     
 
@@ -1775,7 +1761,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2017-12-04 15:03:47" itemprop="dateModified" datetime="2017-12-04T15:03:47+08:00">2017-12-04</time>
+                <time title="修改时间：2019-04-18 14:05:50" itemprop="dateModified" datetime="2019-04-18T14:05:50+08:00">2019-04-18</time>
               
             
           </span>
@@ -1828,32 +1814,24 @@
 
       
         
-          
-            <h1 id="本次编译环境"><a href="#本次编译环境" class="headerlink" title="本次编译环境"></a>本次编译环境</h1><ol>
+          <h1 id="本次编译环境"><a href="#本次编译环境" class="headerlink" title="本次编译环境"></a>本次编译环境</h1><ol>
 <li>os version:windows 10 professional x64</li>
 <li>JDK1.8</li>
 <li>Perl 5.24.2</li>
 <li>Visual Studio 2017</li>
-<li>NASM 2.12.0.2</li>
-</ol>
-<h1 id="配置环境"><a href="#配置环境" class="headerlink" title="配置环境"></a>配置环境</h1><h2 id="下载perl"><a href="#下载perl" class="headerlink" title="下载perl"></a>下载perl</h2><p>到<a href="https://www.activestate.com/activeperl" target="_blank" rel="noopener">ActiveState.com</a>下载perl并安装<br>如果一切顺利的话<br><figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">C:<span class="symbol">\P</span>erl64<span class="symbol">\e</span>g&gt;cd C:<span class="symbol">\P</span>erl64<span class="symbol">\e</span>g</span><br><span class="line">C:<span class="symbol">\P</span>erl64<span class="symbol">\e</span>g&gt;perl example.pl</span><br><span class="line">Hello from ActivePerl!</span><br><span class="line">C:<span class="symbol">\P</span>erl64<span class="symbol">\e</span>g&gt;</span><br></pre></td></tr></table></figure></p>
-<h2 id="下载openssl"><a href="#下载openssl" class="headerlink" title="下载openssl"></a>下载openssl</h2><p>下载<a href="https://www.openssl.org/source/" target="_blank" rel="noopener">openssl</a><br>解压至：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\openssl-1.0.2m</span><br></pre></td></tr></table></figure></p>
-<h2 id="下载NASM"><a href="#下载NASM" class="headerlink" title="下载NASM"></a>下载NASM</h2><p>下载[<a href="http://www.nasm.us/pub/nasm/releasebuilds/2.12.02/win64/" target="_blank" rel="noopener">NASM</a>]，安装后，需要配置path环境变量</p>
-<h1 id="编译openssl"><a href="#编译openssl" class="headerlink" title="编译openssl"></a>编译openssl</h1><ol>
-<li>打开vs Command Prompt</li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">**********************************************************************</span><br><span class="line">** Visual Studio 2017 Developer Command Prompt v15.0.26430.15</span><br><span class="line">** Copyright (c) 2017 Microsoft Corporation</span><br><span class="line">**********************************************************************</span><br><span class="line">[vcvarsall.bat] Environment initialized for: 'x64'</span><br><span class="line"></span><br><span class="line">C:\Program Files (x86)\Microsoft Visual Studio\2017\Community&gt;cd C:\openssl-1.0.2m</span><br><span class="line">C:\openssl-1.0.2m&gt;perl Configure VC-WIN64A no-asm --prefix=d:\openssl_lib</span><br><span class="line">Configuring for VC-WIN64A</span><br><span class="line">    no-asm          [option]   OPENSSL_NO_ASM</span><br><span class="line">    no-ec_nistp_64_gcc_128 [default]  OPENSSL_NO_EC_NISTP_64_GCC_128 (skip dir)</span><br><span class="line">    no-gmp          [default]  OPENSSL_NO_GMP (skip dir)</span><br><span class="line">    no-jpake        [experimental] OPENSSL_NO_JPAKE (skip dir)</span><br><span class="line">    no-krb5         [krb5-flavor not specified] OPENSSL_NO_KRB5</span><br><span class="line">    no-libunbound   [experimental] OPENSSL_NO_LIBUNBOUND (skip dir)</span><br><span class="line">    no-md2          [default]  OPENSSL_NO_MD2 (skip dir)</span><br><span class="line">    no-rc5          [default]  OPENSSL_NO_RC5 (skip dir)</span><br><span class="line">    no-rfc3779      [default]  OPENSSL_NO_RFC3779 (skip dir)</span><br><span class="line">    no-sctp         [default]  OPENSSL_NO_SCTP (skip dir)</span><br><span class="line">    no-shared       [default]</span><br><span class="line">    no-ssl-trace    [default]  OPENSSL_NO_SSL_TRACE (skip dir)</span><br><span class="line">    no-ssl2         [default]  OPENSSL_NO_SSL2 (skip dir)</span><br><span class="line">    no-store        [experimental] OPENSSL_NO_STORE (skip dir)</span><br><span class="line">    no-unit-test    [default]  OPENSSL_NO_UNIT_TEST (skip dir)</span><br><span class="line">    no-weak-ssl-ciphers [default]  OPENSSL_NO_WEAK_SSL_CIPHERS (skip dir)</span><br><span class="line">    no-zlib         [default]</span><br><span class="line">    no-zlib-dynamic [default]</span><br><span class="line">IsMK1MF=1</span><br><span class="line">CC            =cl</span><br><span class="line">CFLAG         =-DOPENSSL_THREADS  -DDSO_WIN32 -W3 -Gs0 -Gy -nologo -DOPENSSL_SYSNAME_WIN32 -DWIN32_LEAN_AND_MEAN -DL_ENDIAN -DUNICODE -D_UNICODE -D_CRT_SECURE_NO_DEPRECATE</span><br><span class="line">EX_LIBS       =</span><br><span class="line">CPUID_OBJ     =mem_clr.o</span><br><span class="line">BN_ASM        =bn_asm.o</span><br><span class="line">EC_ASM        =</span><br><span class="line">DES_ENC       =des_enc.o fcrypt_b.o</span><br><span class="line">AES_ENC       =aes_core.o aes_cbc.o</span><br><span class="line">BF_ENC        =bf_enc.o</span><br><span class="line">CAST_ENC      =c_enc.o</span><br><span class="line">RC4_ENC       =rc4_enc.o rc4_skey.o</span><br><span class="line">RC5_ENC       =rc5_enc.o</span><br><span class="line">MD5_OBJ_ASM   =</span><br><span class="line">SHA1_OBJ_ASM  =</span><br><span class="line">RMD160_OBJ_ASM=</span><br><span class="line">CMLL_ENC      =camellia.o cmll_misc.o cmll_cbc.o</span><br><span class="line">MODES_OBJ     =</span><br><span class="line">ENGINES_OBJ   =</span><br><span class="line">PROCESSOR     =</span><br><span class="line">RANLIB        =true</span><br><span class="line">ARFLAGS       =</span><br><span class="line">PERL          =perl</span><br><span class="line">SIXTY_FOUR_BIT mode</span><br><span class="line">DES_INT used</span><br><span class="line">RC4_CHUNK is unsigned long long</span><br><span class="line"></span><br><span class="line">Configured for VC-WIN64A.</span><br><span class="line"></span><br><span class="line">C:\openssl-1.0.2m&gt;ms\do_win64a</span><br><span class="line"></span><br><span class="line">C:\openssl-1.0.2m&gt;goto proceed</span><br><span class="line"></span><br><span class="line">C:\openssl-1.0.2m&gt;perl util\mk1mf.pl VC-WIN64A  1&gt;ms\nt.mak</span><br><span class="line"></span><br><span class="line">C:\openssl-1.0.2m&gt;perl util\mk1mf.pl dll VC-WIN64A  \1&gt;ms\ntdll.mak</span><br><span class="line"></span><br><span class="line">C:\openssl-1.0.2m&gt;perl util\mkdef.pl 32 libeay  1&gt;ms\libeay32.def</span><br><span class="line"></span><br><span class="line">C:\openssl-1.0.2m&gt;perl util\mkdef.pl 32 ssleay  1&gt;ms\ssleay32.def</span><br><span class="line"></span><br><span class="line">C:\openssl-1.0.2m&gt;nmake -f ms\ntdll.mak</span><br></pre></td></tr></table></figure>
-<p>最终编译完成后会输出至d:\openssl_lib</p>
-<h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><ol>
-<li><a href="http://blog.csdn.net/u010725842/article/details/50295235" target="_blank" rel="noopener">http://blog.csdn.net/u010725842/article/details/50295235</a></li>
-<li><a href="https://wiki.openssl.org/index.php/Compilation_and_Installation#Windows" target="_blank" rel="noopener">https://wiki.openssl.org/index.php/Compilation_and_Installation#Windows</a></li>
-<li><a href="http://developer.covenanteyes.com/building-openssl-for-visual-studio/" target="_blank" rel="noopener">http://developer.covenanteyes.com/building-openssl-for-visual-studio/</a></li>
-</ol>
-
+<li>NASM 2.12.0.2
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2017/11/26/compile-openssl-on-win10/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
-    </div>
+    </li></ol></div>
 
     
 
@@ -1950,12 +1928,24 @@
                 
               
 
-              <time title="创建时间：2017-11-16 14:42:19 / 修改时间：14:56:04" itemprop="dateCreated datePublished" datetime="2017-11-16T14:42:19+08:00">2017-11-16</time>
+              <time title="创建时间：2017-11-16 14:42:19" itemprop="dateCreated datePublished" datetime="2017-11-16T14:42:19+08:00">2017-11-16</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-18 14:07:22" itemprop="dateModified" datetime="2019-04-18T14:07:22+08:00">2019-04-18</time>
               
             
           </span>
@@ -2008,28 +1998,19 @@
 
       
         
+          <h1 id="chromeInspect"><a href="#chromeInspect" class="headerlink" title="chromeInspect"></a>chromeInspect</h1><p>让chrome调试你的apicloud应用<br><a href="https://github.com/SweetInk/chromeInspect" target="_blank" rel="noopener">源码地址</a><br>
+          <!--noindex-->
           
-            <h1 id="chromeInspect"><a href="#chromeInspect" class="headerlink" title="chromeInspect"></a>chromeInspect</h1><p>让chrome调试你的apicloud应用<br><a href="https://github.com/SweetInk/chromeInspect" target="_blank" rel="noopener">源码地址</a></p>
-<h1 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h1><ul>
-<li><p>1.在apicloud后端打开模块管理，上传模块，然后添加至你当前项目里</p>
-</li>
-<li><p>2.js中使用</p>
-  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">apiready = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> ci = api.require(<span class="string">"chromeInspect"</span>);</span><br><span class="line">    <span class="comment">//开启调试</span></span><br><span class="line">    ci.enableDebug(<span class="function"><span class="keyword">function</span>(<span class="params">ret,err</span>)</span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(ret);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="comment">//输出</span></span><br><span class="line">    <span class="comment">//关闭调试</span></span><br><span class="line">    ci.disableDebug(<span class="function"><span class="keyword">function</span>(<span class="params">ret,err</span>)</span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(ret);</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h1 id="系统要求"><a href="#系统要求" class="headerlink" title="系统要求"></a>系统要求</h1><ul>
-<li>android 4.4+</li>
-<li>chrome 最新版</li>
-</ul>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
-<li><a href="http://doc.apicloud.com/Module-Dev/module-dev-guide-for-android" target="_blank" rel="noopener">模块开发指南_Android</a></li>
-<li><a href="https://developers.google.com/web/tools/chrome-devtools/remote-debugging/webviews" target="_blank" rel="noopener">远程调试 WebView</a></li>
-</ul>
-
+            <div class="post-button text-center">
+              <a class="btn" href="/2017/11/16/APICloud插件-ChromeInspect/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
           
+          <!--/noindex-->
         
       
-    </div>
+    </p></div>
 
     
 
@@ -2216,7 +2197,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; 2017 – <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
@@ -2236,7 +2217,7 @@
 
 
 
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.1.0</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.1.0</div>
 
 
 
@@ -2324,7 +2305,9 @@
   
 
 
-  <script src="/js/schemes/muse.js?v=7.1.0"></script>
+  <script src="/js/affix.js?v=7.1.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.0"></script>
 
 
 
