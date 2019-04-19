@@ -845,7 +845,7 @@
 <script>
   function renderGitment() {
     var gitment = new Gitmint({
-      id: window.location.pathname,
+      id: decodeURIComponent(window.location.pathname),
       owner: 'sweetink',
       repo: 'sweetink.github.io',
       
