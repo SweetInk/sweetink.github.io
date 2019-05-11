@@ -106,7 +106,7 @@
 <meta property="og:site_name" content="Newbee">
 <meta property="og:description" content="关于 维基百科  Brainfuck，是一种极小化的计算机语言，它是由Urban Müller在1993年创造的。由于fuck在英语中是脏话，这种语言有时被称为Brainf*ck或Brainf***，或被简称为BF。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-04-18T06:06:33.854Z">
+<meta property="og:updated_time" content="2019-05-11T15:56:41.083Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="brainfuck">
 <meta name="twitter:description" content="关于 维基百科  Brainfuck，是一种极小化的计算机语言，它是由Urban Müller在1993年创造的。由于fuck在英语中是脏话，这种语言有时被称为Brainf*ck或Brainf***，或被简称为BF。">
@@ -436,7 +436,8 @@
 <a id="more"></a>
 <h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>主要逻辑如下<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">while</span>(src not eof)&#123;</span><br><span class="line"> opcode  = fetchCode();<span class="comment">//从source读入单个字符</span></span><br><span class="line"> interprete(opcode);<span class="comment">//根据opcode的语言翻译</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//switch case....</span></span><br><span class="line"><span class="keyword">void</span> interprete(opcode)&#123;</span><br><span class="line">  <span class="keyword">switch</span>(opcode)&#123;</span><br><span class="line">      <span class="keyword">case</span> ....</span><br><span class="line">       ....</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>最后java实现的<a href="https://github.com/SweetInk/brainfuck" target="_blank" rel="noopener">brainfuck</a></p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://zh.wikipedia.org/wiki/Brainfuck" target="_blank" rel="noopener">维基百科</a></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://juejin.im/post/5b7d14ef51882543025acdfd" target="_blank" rel="noopener">然并卵系列：来写个 Brainfuck 解释器吧</a></p>
+<p><a href="https://zh.wikipedia.org/wiki/Brainfuck" target="_blank" rel="noopener">维基百科</a></p>
 <p><a href="https://gist.github.com/roachhd/dce54bec8ba55fb17d3a" target="_blank" rel="noopener">Basics of BrainFuck</a></p>
 
       
@@ -574,8 +575,6 @@
                 <div class="site-state-item site-state-categories">
                   
                     
-                    
-                      
                     
                       
                     
