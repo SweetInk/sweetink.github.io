@@ -98,24 +98,21 @@
 
 
 
-  <meta name="description" content="前言由于把blog的源文件copy到家里的电脑，主要方便临时记录。在执行 hexo g 时遇到了一些奇怪的问题，这里简单记录下。">
+  <meta name="description" content="前言   前天项目中使用了mybatis-plus,但是搭配Jrebel开发项目时，发现修改mapper的xml，或者mapper方法中的注解，Jrebel并没有能够reload mapper.于是就有了本篇文章">
 <meta name="keywords" content="log,debug">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hexo执行generate时的奇怪问题">
-<meta property="og:url" content="http://yoursite.com/2019/05/06/hexo执行generate时的奇怪问题/index.html">
+<meta property="og:title" content="基于JRebel开发的MybatisPlus热加载插件">
+<meta property="og:url" content="http://yoursite.com/2019/05/11/基于JRebel开发的MybatisPlus热加载插件/index.html">
 <meta property="og:site_name" content="Newbee">
-<meta property="og:description" content="前言由于把blog的源文件copy到家里的电脑，主要方便临时记录。在执行 hexo g 时遇到了一些奇怪的问题，这里简单记录下。">
+<meta property="og:description" content="前言   前天项目中使用了mybatis-plus,但是搭配Jrebel开发项目时，发现修改mapper的xml，或者mapper方法中的注解，Jrebel并没有能够reload mapper.于是就有了本篇文章">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/005ViNx8gy1g2s1hobihbj31530s8dit.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/005ViNx8gy1g2s1j0jfoyj311j0sjacl.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/005ViNx8gy1g2s1o5dyndg30dc07iqn4.gif">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/005ViNx8gy1g2s2266bgaj312j086mxz.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/005ViNx8gy1g2s2gt3691j318q0tgach.jpg">
-<meta property="og:updated_time" content="2019-05-06T16:42:43.522Z">
+<meta property="og:image" content="http://ww1.sinaimg.cn/bmiddle/9150e4e5ly1fnczfjrlxsg207k0a90zw.gif">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/005ViNx8gy1g2xqko9oe4j30g70k13zn.jpg">
+<meta property="og:updated_time" content="2019-05-11T15:29:22.036Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hexo执行generate时的奇怪问题">
-<meta name="twitter:description" content="前言由于把blog的源文件copy到家里的电脑，主要方便临时记录。在执行 hexo g 时遇到了一些奇怪的问题，这里简单记录下。">
-<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/005ViNx8gy1g2s1hobihbj31530s8dit.jpg">
+<meta name="twitter:title" content="基于JRebel开发的MybatisPlus热加载插件">
+<meta name="twitter:description" content="前言   前天项目中使用了mybatis-plus,但是搭配Jrebel开发项目时，发现修改mapper的xml，或者mapper方法中的注解，Jrebel并没有能够reload mapper.于是就有了本篇文章">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/bmiddle/9150e4e5ly1fnczfjrlxsg207k0a90zw.gif">
 
 
 
@@ -123,7 +120,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/2019/05/06/hexo执行generate时的奇怪问题/">
+  <link rel="canonical" href="http://yoursite.com/2019/05/11/基于JRebel开发的MybatisPlus热加载插件/">
 
 
 
@@ -133,7 +130,7 @@
   };
 </script>
 
-  <title>hexo执行generate时的奇怪问题 | Newbee</title>
+  <title>基于JRebel开发的MybatisPlus热加载插件 | Newbee</title>
   
 
 
@@ -326,7 +323,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/06/hexo执行generate时的奇怪问题/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/11/基于JRebel开发的MybatisPlus热加载插件/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="sweetink">
@@ -343,7 +340,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">hexo执行generate时的奇怪问题
+          <h1 class="post-title" itemprop="name headline">基于JRebel开发的MybatisPlus热加载插件
 
               
             
@@ -369,7 +366,7 @@
                 
               
 
-              <time title="创建时间：2019-05-06 23:27:10" itemprop="dateCreated datePublished" datetime="2019-05-06T23:27:10+08:00">2019-05-06</time>
+              <time title="创建时间：2019-05-11 21:24:31" itemprop="dateCreated datePublished" datetime="2019-05-11T21:24:31+08:00">2019-05-11</time>
             
 
             
@@ -406,8 +403,8 @@
                 </span>
             
                 <span class="post-meta-item-text">评论数：</span>
-                <a href="/2019/05/06/hexo执行generate时的奇怪问题/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2019/05/06/hexo执行generate时的奇怪问题/" itemprop="commentCount"></span>
+                <a href="/2019/05/11/基于JRebel开发的MybatisPlus热加载插件/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2019/05/11/基于JRebel开发的MybatisPlus热加载插件/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -435,32 +432,44 @@
       
 
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>由于把blog的源文件copy到家里的电脑，主要方便临时记录。<br>在执行 <code>hexo g</code> 时遇到了一些奇怪的问题，这里简单记录下。<br><a id="more"></a><br>hexo 的 post文件内容结构如下</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">;---</span><br><span class="line">title: my test title</span><br><span class="line">date: 2019‎-05‎-06 23:24:30</span><br><span class="line">tags:</span><br><span class="line">;---</span><br><span class="line">content</span><br></pre></td></tr></table></figure>
-<p>上面<code>date</code>为 post的创建日期.假如为空的话，hexo的post生成器会取文件的创建时间;<br>相关代码为<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  <span class="keyword">if</span> (data.date) &#123;</span><br><span class="line">        <span class="keyword">if</span> (timezone) data.date = common.timezone(data.date, timezone);</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        data.date = stats.birthtime;<span class="comment">//文件的创建日期</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h1 id="开始调试"><a href="#开始调试" class="headerlink" title="开始调试"></a>开始调试</h1><p>回到问题本身</p>
-<p>我的其中一篇post，是2017时候，第一次玩hexo，hexo自动为我创建的<code>hello-world</code>;<br>下面展示部分片段</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">;---</span><br><span class="line">title: Hello World</span><br><span class="line">date: 2017‎-0‎1‎-‎22‎ 11:24:30</span><br><span class="line">tags:</span><br><span class="line">;---</span><br><span class="line">Welcome to [<span class="string">Hexo</span>](<span class="link">https://hexo.io/</span>)!...</span><br></pre></td></tr></table></figure>
-<p>date:<code>2017‎-0‎1‎-‎22‎ 11:24:30</code>;<br>当hexo生成post静态页面时却并没有正确解析出日期。</p>
-<p>为了弄清楚为什么，下面开始debug源码.</p>
-<p><img src="http://ww1.sinaimg.cn/large/005ViNx8gy1g2s1hobihbj31530s8dit.jpg" alt="d1"><br>上图为有问题的post的调试图.</p>
-<p><img src="http://ww1.sinaimg.cn/large/005ViNx8gy1g2s1j0jfoyj311j0sjacl.jpg" alt="d2"><br>本图为正常post的调试图.</p>
-<p>通过上图比较，发现date对应的日期字符串基本没啥差别，符合<code>yyyy-MM-dd HH:mm:ss</code>格式，但是 <code>hello-word</code>的post日期却并没有正确解析处理。</p>
-<p><img src="http://ww1.sinaimg.cn/large/005ViNx8gy1g2s1o5dyndg30dc07iqn4.gif" alt="cxk"></p>
-<p>上面通过调试发现并没有找到原因，我觉得可能是我的眼睛欺骗了我，只看到了表面，于是通过<code>EditPlus</code>直接查看文件的十六进制的内容;</p>
-<p><img src="http://ww1.sinaimg.cn/large/005ViNx8gy1g2s2266bgaj312j086mxz.jpg" alt="d3"></p>
-<p>图中第二个文件的日期字节序中多了 <code>E2 80 8E</code> 这个三个字节(Left-to-right mark) ,最终导致日期没有解析处理（ps:这三个字节如何出现的，我也不知道)</p>
-<h1 id="如何解决"><a href="#如何解决" class="headerlink" title="如何解决"></a>如何解决</h1><p>最终解决方法，把日期整行删掉，通过普通文本编辑器重新录入日期。</p>
-<h2 id="调试环境"><a href="#调试环境" class="headerlink" title="调试环境"></a>调试环境</h2><p>操作系统: <code>window 10 professional</code></p>
-<p>调试工具: <code>WebStorm 2019.1.1</code></p>
-<p>hexo版本: <code>3.8.0</code></p>
-<p>调试脚本</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> hexo =  <span class="built_in">require</span>(<span class="string">"hexo/node_modules/hexo-cli/lib/hexo"</span>);</span><br><span class="line"><span class="keyword">var</span> blogPath=<span class="string">"这里填写你的blog目录路径"</span></span><br><span class="line">hexo(blogPath);</span><br></pre></td></tr></table></figure>
-<p>上述js需要在<code>你的blog根目录</code>下执行;</p>
-<p><img src="http://ww1.sinaimg.cn/large/005ViNx8gy1g2s2gt3691j318q0tgach.jpg" alt="d4"></p>
-<p>调试配置参数</p>
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a href="https://en.wikipedia.org/wiki/Left-to-right_mark" target="_blank" rel="noopener">Wiki::Left-to-right_mark</a></p>
-<p><a href="https://www.cnblogs.com/ZDPPU/articles/5779386.html" target="_blank" rel="noopener">解决URL出现%E2%80%8E（Zero-Width Space）</a></p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>   前天项目中使用了mybatis-plus,但是搭配Jrebel开发项目时，发现修改mapper的xml，或者mapper方法中的注解，Jrebel并没有能够reload mapper.于是就有了本篇文章</p>
+<a id="more"></a>
+<h1 id="探索"><a href="#探索" class="headerlink" title="探索"></a>探索</h1><p>  为了解决这个问题，首先想到的是到mybatis-plus官网查看配置方法，官网中的文档<a href="https://mp.baomidou.com/guide/hot-loading.html" target="_blank" rel="noopener">热加载</a>很清楚说明了</p>
+<p>  <code>3.0.6版本上移除了该功能,不过最新快照版已加回来并打上废弃标识,3.1.0版本上已完全移除</code></p>
+<p>  按照官网配置<br>  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="meta">@Profile</span>(<span class="string">"dev"</span>) <span class="comment">// </span></span><br><span class="line"><span class="function"><span class="keyword">public</span> MybatisMapperRefresh <span class="title">mybatisMapperRefresh</span> <span class="params">(MybatisPlusProperties properties, SqlSessionFactory sessionFactory)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> MybatisMapperRefresh(properties.resolveMapperLocations(), sessionFactory, <span class="keyword">true</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>上述配置后重新运行项目，修改mapper，发现并没有生效，于是开始研究他的源码。<br>通过查看<code>MybatisMapperRefresh</code>源码发现他的实现方式：重建mapper来实现<code>热加载</code>的。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">XMLMapperBuilder xmlMapperBuilder = <span class="keyword">new</span> XMLMapperBuilder(resource.getInputStream(),</span><br><span class="line">             sqlSessionFactory.getConfiguration(),</span><br><span class="line">             resource.toString(), sqlSessionFactory.getConfiguration().getSqlFragments());</span><br><span class="line">         xmlMapperBuilder.parse();</span><br></pre></td></tr></table></figure></p>
+<p>最终定位到关键代码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">   * MybatisPlus 加载 SQL 顺序：</span></span><br><span class="line"><span class="comment">   * &lt;p&gt;1、加载XML中的SQL&lt;/p&gt;</span></span><br><span class="line"><span class="comment">   * &lt;p&gt;2、加载sqlProvider中的SQL&lt;/p&gt;</span></span><br><span class="line"><span class="comment">   * &lt;p&gt;3、xmlSql 与 sqlProvider不能包含相同的SQL&lt;/p&gt;</span></span><br><span class="line"><span class="comment">   * &lt;p&gt;调整后的SQL优先级：xmlSql &gt; sqlProvider &gt; curdSql&lt;/p&gt;</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addMappedStatement</span><span class="params">(MappedStatement ms)</span> </span>&#123;</span><br><span class="line">      logger.debug(<span class="string">"addMappedStatement: "</span> + ms.getId());</span><br><span class="line">      <span class="keyword">if</span> (mappedStatements.containsKey(ms.getId())) &#123;</span><br><span class="line">          <span class="comment">/*</span></span><br><span class="line"><span class="comment">           * 说明已加载了xml中的节点； 忽略mapper中的SqlProvider数据</span></span><br><span class="line"><span class="comment">           */</span></span><br><span class="line">          logger.error(<span class="string">"mapper["</span> + ms.getId() + <span class="string">"] is ignored, because it exists, maybe from xml file"</span>);</span><br><span class="line">          <span class="keyword">return</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">super</span>.addMappedStatement(ms);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
+<p>注:Mybatisplus重写了mybatis的<code>Configuration</code>类(这也是Jrebel 无法热加载SQL maps)的原因之一</p>
+<p>上面添加<code>MappedStatement</code>到<code>Configuration</code>时先判断了是否已经加载过,但是项目启动时,<code>Configuration</code>已加载了所有的<code>MappedStatement</code>,所以<code>MybatisMapperRefresh</code> 这个后台线程后面reload完全没有作用.</p>
+<h1 id="开搞"><a href="#开搞" class="headerlink" title="开搞"></a>开搞</h1><p> 先来个滑稽压压惊</p>
+<p><img src="http://ww1.sinaimg.cn/bmiddle/9150e4e5ly1fnczfjrlxsg207k0a90zw.gif" alt></p>
+<p> 为了弄清楚JRebel是如何实现mybatis热加载。</p>
+<p> 我把jrebel的插件作为libary，添加到工程里.</p>
+<p> <img src="http://ww1.sinaimg.cn/large/005ViNx8gy1g2xqko9oe4j30g70k13zn.jpg" alt></p>
+<p>利用IDEA 天然的反编译功能，顺利成章的看到了源码<br>下面是mybatis热加载插件的主入口<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">preinit</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    ClassLoader cl = MyBatisPlugin.class.getClassLoader();</span><br><span class="line">    Integration integration = IntegrationFactory.getInstance();</span><br><span class="line">    integration.addIntegrationProcessor(cl, <span class="string">"org.apache.ibatis.io.Resources"</span>, <span class="keyword">new</span> ResourcesCBP());</span><br><span class="line">    integration.addIntegrationProcessor(cl, <span class="keyword">new</span> String[]&#123;<span class="string">"org.apache.ibatis.builder.xml.XMLConfigBuilder"</span>, <span class="string">"pl.atena.ibatisbaf.core.config.ConfigBuilder"</span>&#125;, <span class="keyword">new</span> XMLConfigBuilderCBP());</span><br><span class="line">    integration.addIntegrationProcessor(cl, <span class="string">"org.apache.ibatis.session.defaults.DefaultSqlSessionFactory"</span>, <span class="keyword">new</span> DefaultSqlSessionFactoryCBP());</span><br><span class="line">    integration.addIntegrationProcessor(cl, <span class="string">"org.apache.ibatis.session.Configuration"</span>, <span class="keyword">new</span> ConfigurationCBP());</span><br><span class="line">    integration.addIntegrationProcessor(cl, <span class="string">"org.apache.ibatis.session.Configuration$StrictMap"</span>, <span class="keyword">new</span> StrictMapCBP());</span><br><span class="line">    integration.addIntegrationProcessor(cl, <span class="string">"org.apache.ibatis.binding.MapperRegistry"</span>, <span class="keyword">new</span> MapperRegistryCBP());</span><br><span class="line">    integration.addIntegrationProcessor(cl, <span class="string">"org.apache.ibatis.reflection.Reflector"</span>, <span class="keyword">new</span> ReflectorCBP());</span><br><span class="line">    integration.addIntegrationProcessor(cl, <span class="string">"org.apache.ibatis.reflection.DefaultReflectorFactory"</span>, <span class="keyword">new</span> DefaultReflectorFactoryCBP());</span><br><span class="line">    integration.addIntegrationProcessor(cl, <span class="string">"org.mybatis.spring.SqlSessionFactoryBean"</span>, <span class="keyword">new</span> SqlSessionFactoryBeanCBP());</span><br><span class="line">    integration.addIntegrationProcessor(cl, <span class="string">"org.apache.ibatis.builder.annotation.MapperAnnotationBuilder"</span>, <span class="keyword">new</span> MapperAnnotationBuilderCBP());</span><br><span class="line">    integration.addIntegrationProcessor(cl, <span class="string">"org.apache.ibatis.type.TypeAliasRegistry"</span>, <span class="keyword">new</span> TypeAliasRegistryCBP());</span><br><span class="line">    integration.addIntegrationProcessor(cl, <span class="string">"org.apache.ibatis.plugin.InterceptorChain"</span>, <span class="keyword">new</span> InterceptorChainCBP());</span><br><span class="line">    integration.addIntegrationProcessor(cl, <span class="string">"org.mybatis.spring.mapper.MapperFactoryBean"</span>, <span class="keyword">new</span> MapperFactoryBeanCBP());</span><br><span class="line">    integration.addIntegrationProcessor(cl, <span class="string">"org.mybatis.spring.annotation.MapperScannerRegistrar"</span>, <span class="keyword">new</span> MapperScannerRegistrarCBP());</span><br><span class="line">    integration.addIntegrationProcessor(cl, <span class="string">"org.apache.ibatis.binding.MapperProxy"</span>, <span class="keyword">new</span> MapperProxyCBP());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>JRebel在应用启动时对mybatis的某些类做了Hook（利用Javaassit)</p>
+<p>上述的类都是和Mapper相关的（Mapper文件解析,Mapper 注解解析…)</p>
+<p>由于<code>mybatis-plus</code>重写了<code>mybatis</code>的一些核心类(而JRebel的插件对mybatis中的关键类做了HOOK)，所以导致项目中整合mybatis-plus时，修改了mapper没有被热加载.</p>
+<p>为了使mybatis-plus也能够热加载，我想到了hook Mybatis-plus中的关键类，于是阅读了mybatis-plus的源码，整理出如下mp重写的mybatis类。</p>
+<ul>
+<li>MybatisConfiguration.java</li>
+<li>MybatisMapperAnnotationBuilder.java</li>
+<li>MybatisSqlSessionFactoryBean.java</li>
+<li>MybatisMapperProxy.java</li>
+</ul>
+<p>然后趁IDEA不注意的时候，去Jrebel的官网找到了开发自定义插件的文档<a href="http://manuals.zeroturnaround.com/jrebel/advanced/custom.html#jrebelcustom" target="_blank" rel="noopener">Custom JRebel plugins</a>.<br>最终写了这个插件。</p>
+<p> PS:其中大部分的代码来自原插件反编译后代码，同时结合Mybatis-plus重写的源码，做了相应适配.</p>
+<p> 下面是插件源码地址：</p>
+<p> <a href="https://github.com/SweetInk/jrebel-mybatisplus" target="_blank" rel="noopener">jrebel-mybatisplus</a></p>
+<p> 如何使用请阅读<code>README.md</code></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ul>
+<li><p>学习了<code>javaassit</code>的使用.</p>
+</li>
+<li><p>阅读了<code>mybatis</code> &amp;&amp; <code>mybatis-plus</code> 的源码，了解到<code>mybatis</code>的实现原理，以及<code>mybatis-plus</code>的相关原理.</p>
+</li>
+<li><p>学习了JRebel的插件开发方式以及它的<code>Hot Reloading</code>原理.</p>
+</li>
+</ul>
 
       
     </div>
@@ -499,8 +508,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/19/Gitment评论初始化失败问题分析/" rel="next" title="Gitment评论初始化失败问题分析">
-                <i class="fa fa-chevron-left"></i> Gitment评论初始化失败问题分析
+              <a href="/2019/05/06/hexo执行generate时的奇怪问题/" rel="next" title="hexo执行generate时的奇怪问题">
+                <i class="fa fa-chevron-left"></i> hexo执行generate时的奇怪问题
               </a>
             
           </div>
@@ -508,10 +517,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/05/11/基于JRebel开发的MybatisPlus热加载插件/" rel="prev" title="基于JRebel开发的MybatisPlus热加载插件">
-                基于JRebel开发的MybatisPlus热加载插件 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -708,7 +713,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#开始调试"><span class="nav-number">2.</span> <span class="nav-text">开始调试</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何解决"><span class="nav-number">3.</span> <span class="nav-text">如何解决</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#调试环境"><span class="nav-number">3.1.</span> <span class="nav-text">调试环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考链接"><span class="nav-number">3.2.</span> <span class="nav-text">参考链接</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#探索"><span class="nav-number">2.</span> <span class="nav-text">探索</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#开搞"><span class="nav-number">3.</span> <span class="nav-text">开搞</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
