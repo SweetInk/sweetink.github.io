@@ -848,9 +848,9 @@
 
 <script>
   function renderGitment() {
-    console.log("page date:" + new Date(1555645631000));
+    console.log("page date:" + new Date('1555645631000'));
     var gitment = new Gitment({
-      id: '1555645631000',
+      id: decodeURIComponent(window.location.pathname),
       owner: 'sweetink',
       repo: 'sweetink.github.io',
       
