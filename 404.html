@@ -687,19 +687,18 @@
     <!-- LOCAL: You can save these files to your site and update links -->
 
   
-  <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/gitmint.browser.js"></script>
+  <script src="js/gitment.browser.js"></script>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/default.css"/>
 <!-- END LOCAL -->
 
 <script>
   function renderGitment() {
-    var gitment = new Gitmint({
+    console.log("hello,world");
+    var gitment = new Gitment({
       id: decodeURIComponent(window.location.pathname),
       owner: 'sweetink',
       repo: 'sweetink.github.io',
-      
-        lang: '' || navigator.language || navigator.systemLanguage || navigator.userLanguage,
       
       oauth: {
       

@@ -397,19 +397,6 @@
           
             
             
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/2019/04/19/Gitment评论初始化失败问题分析/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2019/04/19/Gitment评论初始化失败问题分析/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -854,19 +841,18 @@
     <!-- LOCAL: You can save these files to your site and update links -->
 
   
-  <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/gitmint.browser.js"></script>
+  <script src="js/gitment.browser.js"></script>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/default.css">
 <!-- END LOCAL -->
 
 <script>
   function renderGitment() {
-    var gitment = new Gitmint({
+    console.log("hello,world");
+    var gitment = new Gitment({
       id: decodeURIComponent(window.location.pathname),
       owner: 'sweetink',
       repo: 'sweetink.github.io',
-      
-        lang: '' || navigator.language || navigator.systemLanguage || navigator.userLanguage,
       
       oauth: {
       
