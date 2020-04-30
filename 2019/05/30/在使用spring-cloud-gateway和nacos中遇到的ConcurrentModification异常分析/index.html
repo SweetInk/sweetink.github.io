@@ -110,7 +110,7 @@
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/005ViNx8gy1g3jq28xccwj30r20igmze.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/005ViNx8gy1g3jqh491spj30ot08a74f.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/005ViNx8gy1g3jqxxxn9bj30up114whf.jpg">
-<meta property="og:updated_time" content="2019-05-30T15:38:53.542Z">
+<meta property="og:updated_time" content="2020-01-17T06:58:38.226Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在使用spring-cloud-gateway和nacos中遇到的ConcurrentModification异常分析">
 <meta name="twitter:description" content="最近项目中升级了spring-boot版本(2.1.3.RELEASE)，同时也把之前的Zuul替换成了spring-gate-way(2.1.1.RELEASE),并且集成了nacos(1.0.0). 发布到测试环境的时候，出现了如下异常">
@@ -451,7 +451,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handle</span><span class="params">(RefreshEvent event)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (<span class="keyword">this</span>.ready.get()) &#123; <span class="comment">// don't handle events before app is ready</span></span><br><span class="line">			log.debug(<span class="string">"Event received "</span> + event.getEventDesc());</span><br><span class="line">			Set&lt;String&gt; keys = <span class="keyword">this</span>.refresh.refresh();</span><br><span class="line">			log.info(<span class="string">"Refresh keys changed: "</span> + keys);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
 <p>这个方法会调用<code>ContextRefresher</code>中的<code>refresh</code>方法</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public synchronized <span class="built_in">Set</span>&lt;<span class="built_in">String</span>&gt; refresh() &#123;</span><br><span class="line">		<span class="built_in">Set</span>&lt;<span class="built_in">String</span>&gt; keys = refreshEnvironment();</span><br><span class="line">		<span class="keyword">this</span>.scope.refreshAll();</span><br><span class="line">		<span class="keyword">return</span> keys;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-<p>上述方法会使<code>Environment</code>中的配置属性刷新，重新加载，同时一些<code>ConfigurationPropertie</code> 类的属性会被重新绑定（这个时候1GatewayProperties1中之前的1routes1中的元素会被清除，然后设置新的路由信息，进而modCount这个值也被修改了），然后发布<code>RefreshScopeRefreshedEvent</code></p>
+<p>上述方法会使<code>Environment</code>中的配置属性刷新，重新加载，同时一些<code>ConfigurationPropertie</code> 类的属性会被重新绑定（这个时候<code>GatewayProperties</code>中之前的<code>routes</code>中的元素会被清除，然后设置新的路由信息，进而modCount这个值也被修改了），然后发布<code>RefreshScopeRefreshedEvent</code></p>
 <p><code>RouteRefreshListener</code> 监听了 <code>RefreshScopeRefreshedEvent</code>这个事件，当回调时，发布<code>RefreshRoutesEvent</code>事件</p>
 <p><code>spring-cloud-gateway</code> 中的<code>CachingRouteLocator</code>和上面提到的<code>WeightCalculatorWebFilter</code> 都监听了RefreshRoutesEvent`事件</p>
 <p>然后触发各个监听器的回调方法</p>
@@ -751,7 +751,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2017 – <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; 2017 – <span itemprop="copyrightYear">2020</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
