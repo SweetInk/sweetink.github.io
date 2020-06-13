@@ -263,6 +263,23 @@
     <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
 
   </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-demo">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/demo/" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>demo</a>
+
+  </li>
 
       
       
@@ -303,6 +320,150 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/22/work-log-2017年2月22日/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="sweetink">
+      <meta itemprop="description" content="Winner winner chicken dinner !">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Newbee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/02/22/work-log-2017年2月22日/" class="post-title-link" itemprop="url">work log 2017年2月22日</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-02-22 11:45:58" itemprop="dateCreated datePublished" datetime="2017-02-22T11:45:58+08:00">2017-02-22</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="0x001-问题"><a href="#0x001-问题" class="headerlink" title="0x001 问题"></a>0x001 问题</h2><p>今天修复APP BUG,无意中发现了以前遗留的问题：<br>1.从server 获取到数据后append到ul上，没有清空ul（低级错误啊，竟然没有发现）,导致list越来越长 ==！。</p>
+<h2 id="0x002-收获"><a href="#0x002-收获" class="headerlink" title="0x002 收获"></a>0x002 收获</h2><p> <strong>1.jQuery几种符号选择器的区别（以前也知道，貌似很久没用就忘了，看来得多用啊）</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">空格：$(<span class="string">'parent childchild'</span>);<span class="comment">//表示获取parent下的所有的childchild节点（所有的子孙）。</span></span><br><span class="line"></span><br><span class="line">大于号：$(<span class="string">'parent &gt; child'</span>);<span class="comment">//表示获取parent下的所有child的儿子( 第一代)。</span></span><br><span class="line"></span><br><span class="line">加号：$(<span class="string">'pre + nextbrother'</span>);<span class="comment">//表示获得pre节点的下一个兄弟节点，相当于next()方法</span></span><br><span class="line"></span><br><span class="line">波浪号：$(<span class="string">'pre ~ brother'</span>);<span class="comment">//表示获取pre节点的后面的所有兄弟节点，相当于nextAll()方法。</span></span><br></pre></td></tr></table></figure>
+<p>原文：<a href="http://my.oschina.net/jsonavaj/blog/62630" title="原文" target="_blank" rel="noopener">http://my.oschina.net/jsonavaj/blog/62630</a></p>
+<p><strong>2.Jquey删除掉元素前先过滤：</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">element_list.not(<span class="string">":first"</span>).remove();<span class="comment">//移除除第一个以外的所有元素</span></span><br><span class="line"></span><br><span class="line">element_list.not(<span class="string">":eq(0)"</span>).remove();</span><br><span class="line"></span><br><span class="line">element_list.filter(<span class="function"><span class="keyword">function</span>(<span class="params">index</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> index%<span class="number">2</span>==<span class="number">0</span>;</span><br><span class="line">&#125;).remove();</span><br></pre></td></tr></table></figure></p>
+<p><strong>3.MSSQL 的update from 语法</strong><br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">update</span> a <span class="keyword">set</span> a.fk_name = b.name <span class="keyword">from</span> a,b <span class="keyword">where</span> a.fid = b.id</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -776,7 +937,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-count">24</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -807,7 +968,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">9</span>
+                      
+                    
+                    <span class="site-state-item-count">10</span>
                     <span class="site-state-item-name">分类</span>
                   
                 </div>
@@ -846,7 +1009,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">11</span>
+                      
+                    
+                    <span class="site-state-item-count">12</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
