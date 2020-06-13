@@ -1,4 +1,5 @@
 (function (ns, $) {
+  console.log("i modified")
   ns.LOADED_STYLES = ns.LOADED_STYLES || {};
   ns.loadStyle = function(url) {
     if (ns.LOADED_STYLES[url]) {
@@ -185,6 +186,8 @@
     this.el = $$('div', ['github-badge']);
     this.info = $$('div', ['info']);
     this.header = $$('div', ['header']);
+    this.header.setAttribute("test","some value");
+    this.header.style = 'width:100%';
     this.commits = $$('div', ['commits', 'fold']);
 
 
