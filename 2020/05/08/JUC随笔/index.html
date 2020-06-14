@@ -98,18 +98,18 @@
 
 
 
-  <meta name="description" content="RenentrantReadWriteLock123456       16 bit          16 bit+------------------------------------+|ReadLockCounts    |WriteLockCounts  |+------------------------------------+">
+  <meta name="description" content="RenentrantReadWriteLock12345       16 bit          16 bit+------------------------------------+|ReadLockCounts  |  WriteLockCounts  |+------------------------------------+">
 <meta name="keywords" content="log,code">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JUC随笔">
-<meta property="og:url" content="http://yoursite.com/2020/05/08/随笔/index.html">
+<meta property="og:url" content="http://yoursite.com/2020/05/08/JUC随笔/index.html">
 <meta property="og:site_name" content="Newbee">
-<meta property="og:description" content="RenentrantReadWriteLock123456       16 bit          16 bit+------------------------------------+|ReadLockCounts    |WriteLockCounts  |+------------------------------------+">
+<meta property="og:description" content="RenentrantReadWriteLock12345       16 bit          16 bit+------------------------------------+|ReadLockCounts  |  WriteLockCounts  |+------------------------------------+">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-06-13T09:18:59.926Z">
+<meta property="og:updated_time" content="2020-06-14T16:44:45.657Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JUC随笔">
-<meta name="twitter:description" content="RenentrantReadWriteLock123456       16 bit          16 bit+------------------------------------+|ReadLockCounts    |WriteLockCounts  |+------------------------------------+">
+<meta name="twitter:description" content="RenentrantReadWriteLock12345       16 bit          16 bit+------------------------------------+|ReadLockCounts  |  WriteLockCounts  |+------------------------------------+">
 
 
 
@@ -117,7 +117,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/2020/05/08/随笔/">
+  <link rel="canonical" href="http://yoursite.com/2020/05/08/JUC随笔/">
 
 
 
@@ -337,7 +337,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/08/随笔/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/08/JUC随笔/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="sweetink">
@@ -433,7 +433,7 @@
       
 
       
-        <h1 id="RenentrantReadWriteLock"><a href="#RenentrantReadWriteLock" class="headerlink" title="RenentrantReadWriteLock"></a>RenentrantReadWriteLock</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">       16 bit          16 bit</span><br><span class="line"></span><br><span class="line">+------------------------------------+</span><br><span class="line">|ReadLockCounts    |WriteLockCounts  |</span><br><span class="line">+------------------------------------+</span><br></pre></td></tr></table></figure>
+        <h1 id="RenentrantReadWriteLock"><a href="#RenentrantReadWriteLock" class="headerlink" title="RenentrantReadWriteLock"></a>RenentrantReadWriteLock</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">       16 bit          16 bit</span><br><span class="line"></span><br><span class="line">+------------------------------------+</span><br><span class="line">|ReadLockCounts  |  WriteLockCounts  |</span><br><span class="line">+------------------------------------+</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
 <h1 id="CountDownLatch-和-CyclicBarrier-区别"><a href="#CountDownLatch-和-CyclicBarrier-区别" class="headerlink" title="CountDownLatch 和 CyclicBarrier 区别"></a>CountDownLatch 和 CyclicBarrier 区别</h1><h2 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h2><ol>
 <li><p><code>CountDownLatch</code> 通过 <code>共享锁实现</code></p>
@@ -449,7 +449,7 @@
 <li><p><code>CountDownLatch</code>不可以重用,而<code>CyclicBarrier</code>可以重用</p>
 </li>
 </ol>
-<h1 id="AbstractQueuedSynchronizer"><a href="#AbstractQueuedSynchronizer" class="headerlink" title="AbstractQueuedSynchronizer"></a>AbstractQueuedSynchronizer</h1><h2 id="Filed"><a href="#Filed" class="headerlink" title="Filed"></a>Filed</h2><h3 id="state-Integer"><a href="#state-Integer" class="headerlink" title="state:Integer"></a>state:Integer</h3><ul>
+<h1 id="AbstractQueuedSynchronizer"><a href="#AbstractQueuedSynchronizer" class="headerlink" title="AbstractQueuedSynchronizer"></a>AbstractQueuedSynchronizer</h1><h2 id="Node中的waitStatus说明"><a href="#Node中的waitStatus说明" class="headerlink" title="Node中的waitStatus说明"></a>Node中的waitStatus说明</h2><ul>
 <li><code>CANCELLED (1)</code>:</li>
 </ul>
 <p>由于超时，导致节点被取消，或者节点中的线程被中断。<br>节点永远不会离开此状态。具体地说，具有已取消节点的线程永远不会再阻塞。</p>
@@ -458,15 +458,17 @@
 </ul>
 <p>此节点的后继节点被(或将很快)阻塞(通过<code>park</code>)，因此当前节点在释放或取消时必须<code>unpark</code>其后继节点。为了避免竞争，<code>acquire</code>方法必须首先指示它们需要一个信号，然后重试原子<code>acquire</code>，然后在失败时阻塞。</p>
 <ul>
-<li><p><code>CONDITION (-2)</code>:</p>
-</li>
-<li><p><code>PROPAGATE (-3)</code>:</p>
-</li>
+<li><code>CONDITION (-2)</code>:</li>
 </ul>
+<p>此节点当前处于条件队列中。在传输之前（Conditon被唤醒，重新加入同步队列），它不会用作同步队列节点，此时状态将设置为0。(此处使用此值与该字段的其他用途无关，但简化了机制。)</p>
+<ul>
+<li><code>PROPAGATE (-3)</code>:</li>
+</ul>
+<p>“releaseShared”应该传播到其他节点。这是在“doReleaseShared”中设置的(仅针对头节点)，以确保传播继续，即使其他操作已经介入。</p>
 <p>–</p>
-<p>45DD15D6DD2DA50AEB71CE7A5284CF8E<br>这些值以数字形式排列，以简化使用。<br>非负值表示节点不需要发信号。因此，大多数代码不需要检查特定值，只需要检查签名即可。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">//用于创建同步等待队列节点</span></span><br><span class="line">   Node(Thread thread, Node mode) &#123;     <span class="comment">// Used by addWaiter</span></span><br><span class="line">            <span class="keyword">this</span>.nextWaiter = mode;</span><br><span class="line">            <span class="keyword">this</span>.thread = thread;</span><br><span class="line">        &#125;</span><br><span class="line"><span class="comment">//AbTest323445</span></span><br><span class="line">  <span class="comment">// 用于创建条件队列节点</span></span><br><span class="line">  Node(Thread thread, <span class="keyword">int</span> waitStatus) &#123; <span class="comment">// Used by Condition</span></span><br><span class="line">          <span class="keyword">this</span>.waitStatus = waitStatus;</span><br><span class="line">          <span class="keyword">this</span>.thread = thread;</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
-<p><em>节点入队列操作</em><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> Node <span class="title">enq</span><span class="params">(<span class="keyword">final</span> Node node)</span> </span>&#123;</span><br><span class="line">     <span class="keyword">for</span> (;;) &#123;</span><br><span class="line">         Node t = tail;</span><br><span class="line">         <span class="keyword">if</span> (t == <span class="keyword">null</span>) &#123; <span class="comment">// Must initialize</span></span><br><span class="line">         <span class="comment">//假如这里设置失败说明已存在tail节点，下次循环获取到tail</span></span><br><span class="line">             <span class="keyword">if</span> (compareAndSetHead(<span class="keyword">new</span> Node()))</span><br><span class="line">                 tail = head;</span><br><span class="line">         &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">             <span class="comment">// 先设置当前入队列节点的前继节点为"Tail"节点</span></span><br><span class="line">             node.prev = t;</span><br><span class="line">             <span class="comment">//假如这里tail节点设置失败，说明，tail节点被其他线程更新了，所有继续循环直到成功为止.</span></span><br><span class="line">             <span class="keyword">if</span> (compareAndSetTail(t, node)) &#123;</span><br><span class="line">                 <span class="comment">//设置之前的tail节点的后继节点为新的tail节点</span></span><br><span class="line">                 t.next = node;</span><br><span class="line">                 <span class="keyword">return</span> t;</span><br><span class="line">             &#125;</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></p>
+<p>对于普通同步节点，该字段被初始化为0，对于条件节点，该字段被初始化为<code>CONDITION</code>。使用CAS修改它(或者在可能的情况下，无条件的volatile写操作)。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//用于创建同步等待队列节点</span></span><br><span class="line">  Node(Thread thread, Node mode) &#123;     <span class="comment">// Used by addWaiter</span></span><br><span class="line">           <span class="keyword">this</span>.nextWaiter = mode;</span><br><span class="line">           <span class="keyword">this</span>.thread = thread;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line"> <span class="comment">// 用于创建条件队列节点</span></span><br><span class="line"> Node(Thread thread, <span class="keyword">int</span> waitStatus) &#123; <span class="comment">// Used by Condition</span></span><br><span class="line">         <span class="keyword">this</span>.waitStatus = waitStatus;</span><br><span class="line">         <span class="keyword">this</span>.thread = thread;</span><br><span class="line">     &#125;</span><br></pre></td></tr></table></figure>
+<p><em>节点入队列操作</em><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> Node <span class="title">enq</span><span class="params">(<span class="keyword">final</span> Node node)</span> </span>&#123;</span><br><span class="line">     <span class="keyword">for</span> (;;) &#123;</span><br><span class="line">         Node t = tail;</span><br><span class="line">         <span class="keyword">if</span> (t == <span class="keyword">null</span>) &#123; <span class="comment">// Must initialize</span></span><br><span class="line">         <span class="comment">//假如这里设置失败说明已存在tail节点，下次循环获取到tail</span></span><br><span class="line">             <span class="keyword">if</span> (compareAndSetHead(<span class="keyword">new</span> Node()))</span><br><span class="line">                 tail = head;</span><br><span class="line">         &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">             <span class="comment">// 先设置当前入队列节点的前继节点为"Tail"节点</span></span><br><span class="line">             node.prev = t;</span><br><span class="line">             <span class="comment">//假如这里tail节点设置失败，说明，tail节点被其他线程更新了，所有继续循环直到成功为止.</span></span><br><span class="line">             <span class="keyword">if</span> (compareAndSetTail(t, node)) &#123;</span><br><span class="line">                 <span class="comment">//设置之前的tail节点的后继节点为新的tail节点</span></span><br><span class="line">                 t.next = node;</span><br><span class="line">                 <span class="keyword">return</span> t;</span><br><span class="line">             &#125;</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></p>
 <p><em>为当前线程和给定模式创建节点并将其入队。</em></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  * 为当前线程和给定模式创建节点并将其入队。</span></span><br><span class="line"><span class="comment">  *</span></span><br><span class="line"><span class="comment">  * Creates and enqueues node for current thread and given mode.</span></span><br><span class="line"><span class="comment">  *</span></span><br><span class="line"><span class="comment">  * EXCLUSIVE:独占模式，SHARED:共享模式</span></span><br><span class="line"><span class="comment">  *</span></span><br><span class="line"><span class="comment">  * <span class="doctag">@param</span> mode Node.EXCLUSIVE for exclusive, Node.SHARED for shared</span></span><br><span class="line"><span class="comment">  * <span class="doctag">@return</span> the new node</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"> <span class="function"><span class="keyword">private</span> Node <span class="title">addWaiter</span><span class="params">(Node mode)</span> </span>&#123;</span><br><span class="line">     Node node = <span class="keyword">new</span> Node(Thread.currentThread(), mode);</span><br><span class="line">     <span class="comment">// Try the fast path of enq; backup to full enq on failure</span></span><br><span class="line">     Node pred = tail;</span><br><span class="line">     <span class="comment">//已存在tail节点</span></span><br><span class="line">     <span class="keyword">if</span> (pred != <span class="keyword">null</span>) &#123;</span><br><span class="line">         <span class="comment">//设置当前节点的前继节点为tail节点</span></span><br><span class="line">         node.prev = pred;</span><br><span class="line">         <span class="comment">//设置tail节点为当前入队列节点，假如这里设置失败如何处理</span></span><br><span class="line">         <span class="keyword">if</span> (compareAndSetTail(pred, node)) &#123;</span><br><span class="line">             pred.next = node;</span><br><span class="line">             <span class="keyword">return</span> node;</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="comment">// 用于上述快速入队列失败的后备操作，下面这个方法通过自旋，保证入队列成功</span></span><br><span class="line">     enq(node);</span><br><span class="line">     <span class="keyword">return</span> node;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
 <p><em>设置头节点</em></p>
@@ -521,6 +523,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/06/14/LinkedHashMap和LinkedHashSet有序分析/" rel="prev" title="JDK1.8 LinkedHashMap和LinkedHashSet有序分析">
+                JDK1.8 LinkedHashMap和LinkedHashSet有序分析 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -596,7 +602,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">24</span>
+                    <span class="site-state-item-count">25</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -723,7 +729,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#RenentrantReadWriteLock"><span class="nav-number">1.</span> <span class="nav-text">RenentrantReadWriteLock</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CountDownLatch-和-CyclicBarrier-区别"><span class="nav-number">2.</span> <span class="nav-text">CountDownLatch 和 CyclicBarrier 区别</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#实现方式"><span class="nav-number">2.1.</span> <span class="nav-text">实现方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用法"><span class="nav-number">2.2.</span> <span class="nav-text">用法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#AbstractQueuedSynchronizer"><span class="nav-number">3.</span> <span class="nav-text">AbstractQueuedSynchronizer</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Filed"><span class="nav-number">3.1.</span> <span class="nav-text">Filed</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#state-Integer"><span class="nav-number">3.1.1.</span> <span class="nav-text">state:Integer</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#RenentrantReadWriteLock"><span class="nav-number">1.</span> <span class="nav-text">RenentrantReadWriteLock</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CountDownLatch-和-CyclicBarrier-区别"><span class="nav-number">2.</span> <span class="nav-text">CountDownLatch 和 CyclicBarrier 区别</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#实现方式"><span class="nav-number">2.1.</span> <span class="nav-text">实现方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用法"><span class="nav-number">2.2.</span> <span class="nav-text">用法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#AbstractQueuedSynchronizer"><span class="nav-number">3.</span> <span class="nav-text">AbstractQueuedSynchronizer</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Node中的waitStatus说明"><span class="nav-number">3.1.</span> <span class="nav-text">Node中的waitStatus说明</span></a></li></ol></li></ol></div>
             
 
           </div>
