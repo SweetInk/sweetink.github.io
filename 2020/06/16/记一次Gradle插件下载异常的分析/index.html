@@ -112,7 +112,7 @@
 <meta property="og:image" content="https://imgkr.cn-bj.ufileos.com/9556e3b3-168a-43b8-992b-06947a488ea1.png">
 <meta property="og:image" content="https://imgkr.cn-bj.ufileos.com/99d48e3c-bd7d-4f1f-84d2-19645ce13127.png">
 <meta property="og:image" content="https://imgkr.cn-bj.ufileos.com/3e409267-ac10-41ef-b365-a611e2bdc0e0.png">
-<meta property="og:updated_time" content="2020-06-16T13:43:58.424Z">
+<meta property="og:updated_time" content="2020-06-18T13:31:05.136Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="记一次Gradle插件下载异常的分析">
 <meta name="twitter:description" content="前言今天在微信读书上翻到一本关于Spring源码分析的书《Spring源码深度解析》，于是想着动手调试下Spring的源码，想起一年前下载的Spring-framework-5.1.5RELEASE源码，于是导入IDEA，果不其然，报错了.">
@@ -465,7 +465,7 @@
 <p><code>gradlew.bat clean --stacktrace --no-daemon</code></p>
 <p>按下回车后，如果上述配置没错，会得到如下输出</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&quot;C:\Program Files\Java\jdk1.8.0_191/bin/java.exe&quot;   &quot;-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005&quot; -Dhttp.proxyHost=localhost -D</span><br><span class="line">http.proxyPort=58707 -Dhttps.proxyHost=localhost -Dhttps.proxyPort=58707 -Djava.net.useSystemProxies=true -XX:MaxMetaspaceSize=1024m</span><br><span class="line"> -Xmx1024m -XX:MaxHeapSize=256m  &quot;-Dorg.gradle.appname=gradlew&quot; -classpath &quot;D:\源码分析\spring-framework-5.1.5.RELEASE\\gradle\wrapper\gradle-wrapper.</span><br><span class="line">jar&quot; org.gradle.wrapper.GradleWrapperMain clean --stacktrace --no-daemon</span><br><span class="line">Listening for transport dt_socket at address: 5005</span><br></pre></td></tr></table></figure>
-<p>上面的命令只是启动了GraldeWrapper,我们还得知道IDEA能不能调试</p>
+<p>上面的命令只是启动了GradleWrapper,我们还得知道IDEA能不能调试</p>
 <ol>
 <li><p>在IDEA中打开<code>org.gradle.wrapper.GradleWrapperMain</code>这个类，添加一个断点</p>
 </li>
@@ -495,7 +495,7 @@
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
 <li><p>上述gradle下载插件的异常就是代理问题导致的,但是提示也太坑爹了，没有提示网络相关的东西</p>
 </li>
-<li><p>gralde中配置文件中系统属性的优先级 <code>gradle程序命令行参数</code> &gt; <code>USER_HOME/gradle.properties</code> &gt; <code>PROJECT_DIR/gradle.properties</code> &gt; <code>SystemProperties</code></p>
+<li><p>gradle中配置文件中系统属性的优先级 <code>gradle程序命令行参数</code> &gt; <code>USER_HOME/gradle.properties</code> &gt; <code>PROJECT_DIR/gradle.properties</code> &gt; <code>SystemProperties</code></p>
 </li>
 </ol>
 
@@ -545,6 +545,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/06/30/RocketMQ顺序消费实现原理分析/" rel="prev" title="RocketMQ顺序消费实现原理分析">
+                RocketMQ顺序消费实现原理分析 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -620,7 +624,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">26</span>
+                    <span class="site-state-item-count">27</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -694,7 +698,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">12</span>
+                      
+                    
+                    <span class="site-state-item-count">13</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
