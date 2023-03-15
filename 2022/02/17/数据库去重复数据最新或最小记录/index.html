@@ -17,14 +17,14 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha256-/4UQcSmErDzPCMAiuOiWPVVsNN2s3ZY/NsmXNcj0IFc=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"yoursite.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.15.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"yoursite.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.15.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"default"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="取最小记录没有比它更小的记录，那么就是最小记录 1234567select v1.id,v2.id from certification_version v1 left join certification_version v2 on v1.certification_id &#x3D; v2.certification_idand v1.deleted &#x3D; &amp;#x27;f&amp;#x27;and v2.crea">
+    <meta name="description" content="取最小记录没有比它更小的记录，那么就是最小记录 select v1.id,v2.id from certification_version v1 left join certification_version v2 on v1.certification_id &#x3D; v2.certification_idand v1.deleted &#x3D; &amp;#x27;f&amp;#x27;and v2.created_tim">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据库去重复数据最新或最小记录.">
 <meta property="og:url" content="http://yoursite.com/2022/02/17/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%BB%E9%87%8D%E5%A4%8D%E6%95%B0%E6%8D%AE%E6%9C%80%E6%96%B0%E6%88%96%E6%9C%80%E5%B0%8F%E8%AE%B0%E5%BD%95/index.html">
 <meta property="og:site_name" content="鳖摸鱼啦~">
-<meta property="og:description" content="取最小记录没有比它更小的记录，那么就是最小记录 1234567select v1.id,v2.id from certification_version v1 left join certification_version v2 on v1.certification_id &#x3D; v2.certification_idand v1.deleted &#x3D; &amp;#x27;f&amp;#x27;and v2.crea">
+<meta property="og:description" content="取最小记录没有比它更小的记录，那么就是最小记录 select v1.id,v2.id from certification_version v1 left join certification_version v2 on v1.certification_id &#x3D; v2.certification_idand v1.deleted &#x3D; &amp;#x27;f&amp;#x27;and v2.created_tim">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-02-17T03:44:24.000Z">
 <meta property="article:modified_time" content="2023-03-14T16:44:27.899Z">
@@ -162,7 +162,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">20</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -220,13 +220,6 @@
 
       <time title="创建时间：2022-02-17 11:44:24" itemprop="dateCreated datePublished" datetime="2022-02-17T11:44:24+08:00">2022-02-17</time>
     </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-03-15 00:44:27" itemprop="dateModified" datetime="2023-03-15T00:44:27+08:00">2023-03-15</time>
-    </span>
 
   
 </div>
@@ -239,9 +232,9 @@
     
     <div class="post-body" itemprop="articleBody">
         <h1 id="取最小记录"><a href="#取最小记录" class="headerlink" title="取最小记录"></a>取最小记录</h1><p>没有比它更小的记录，那么就是最小记录</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">select v1.id,v2.id from certification_version v1 left join certification_version v2 on v1.certification_id = v2.certification_id</span><br><span class="line">and v1.deleted = &#x27;f&#x27;</span><br><span class="line">and v2.created_time &lt; v1.created_time</span><br><span class="line">where 1=1</span><br><span class="line">--and v1.id =&#x27;d0196569-393d-4bb1-a843-7b058efca61d&#x27;</span><br><span class="line">and v2.id is null</span><br><span class="line">and v1.certification_id = &#x27;c1bb788b-cce3-4377-baae-53e4b4f589d8&#x27;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">select v1.id,v2.id from certification_version v1 left join certification_version v2 on v1.certification_id = v2.certification_id</span><br><span class="line">and v1.deleted = &#x27;f&#x27;</span><br><span class="line">and v2.created_time &lt; v1.created_time</span><br><span class="line">where 1=1</span><br><span class="line">--and v1.id =&#x27;d0196569-393d-4bb1-a843-7b058efca61d&#x27;</span><br><span class="line">and v2.id is null</span><br><span class="line">and v1.certification_id = &#x27;c1bb788b-cce3-4377-baae-53e4b4f589d8&#x27;</span><br></pre></td></tr></table></figure>
 <h1 id="取最大记录"><a href="#取最大记录" class="headerlink" title="取最大记录"></a>取最大记录</h1><p>没有比它更新的记录，那么它就是最新记录</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">select v1.id,v2.id from certification_version v1 left join certification_version v2 on v1.certification_id = v2.certification_id</span><br><span class="line">and v1.deleted = &#x27;f&#x27;</span><br><span class="line">and v1.created_time &lt; v2.created_time</span><br><span class="line">where 1=1</span><br><span class="line">--and v1.id =&#x27;d0196569-393d-4bb1-a843-7b058efca61d&#x27;</span><br><span class="line">and v2.id is null</span><br><span class="line">and v1.certification_id = &#x27;c1bb788b-cce3-4377-baae-53e4b4f589d8&#x27;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">select v1.id,v2.id from certification_version v1 left join certification_version v2 on v1.certification_id = v2.certification_id</span><br><span class="line">and v1.deleted = &#x27;f&#x27;</span><br><span class="line">and v1.created_time &lt; v2.created_time</span><br><span class="line">where 1=1</span><br><span class="line">--and v1.id =&#x27;d0196569-393d-4bb1-a843-7b058efca61d&#x27;</span><br><span class="line">and v2.id is null</span><br><span class="line">and v1.certification_id = &#x27;c1bb788b-cce3-4377-baae-53e4b4f589d8&#x27;</span><br></pre></td></tr></table></figure>
     </div>
 
     

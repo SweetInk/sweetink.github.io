@@ -17,14 +17,14 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha256-/4UQcSmErDzPCMAiuOiWPVVsNN2s3ZY/NsmXNcj0IFc=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"yoursite.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.15.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"yoursite.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.15.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"default"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="request &#x2F;actuator&#x2F;bus-refresh  BusRefreshEndpoint received request  ApplicationEventPublisher.publish(RemoteApplicationEvent)  BusAutoConfiguration#   123456789101112@EventListener(classes">
+    <meta name="description" content="request &#x2F;actuator&#x2F;bus-refresh  BusRefreshEndpoint received request  ApplicationEventPublisher.publish(RemoteApplicationEvent)  BusAutoConfiguration#   @EventListener(classes &#x3D; RemoteApplica">
 <meta property="og:type" content="article">
 <meta property="og:title" content="spring-cloud是如何通过bus-refresh刷新配置的">
 <meta property="og:url" content="http://yoursite.com/2021/03/18/spring-cloud%E6%98%AF%E5%A6%82%E4%BD%95%E9%80%9A%E8%BF%87bus-refresh%E5%88%B7%E6%96%B0%E9%85%8D%E7%BD%AE%E7%9A%84/index.html">
 <meta property="og:site_name" content="鳖摸鱼啦~">
-<meta property="og:description" content="request &#x2F;actuator&#x2F;bus-refresh  BusRefreshEndpoint received request  ApplicationEventPublisher.publish(RemoteApplicationEvent)  BusAutoConfiguration#   123456789101112@EventListener(classes">
+<meta property="og:description" content="request &#x2F;actuator&#x2F;bus-refresh  BusRefreshEndpoint received request  ApplicationEventPublisher.publish(RemoteApplicationEvent)  BusAutoConfiguration#   @EventListener(classes &#x3D; RemoteApplica">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-03-18T10:03:00.000Z">
 <meta property="article:modified_time" content="2023-03-14T16:44:27.893Z">
@@ -165,7 +165,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">20</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -225,13 +225,6 @@
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-03-15 00:44:27" itemprop="dateModified" datetime="2023-03-15T00:44:27+08:00">2023-03-15</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
       </span>
       <span class="post-meta-item-text">分类于</span>
@@ -260,7 +253,7 @@
 <li><p>BusAutoConfiguration#</p>
 </li>
 </ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@EventListener(classes = RemoteApplicationEvent.class)</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">acceptLocal</span><span class="params">(RemoteApplicationEvent event)</span> &#123;</span><br><span class="line">		<span class="keyword">if</span> (<span class="built_in">this</span>.serviceMatcher.isFromSelf(event)</span><br><span class="line">				&amp;&amp; !(event <span class="keyword">instanceof</span> AckRemoteApplicationEvent)) &#123;</span><br><span class="line">			<span class="keyword">if</span> (log.isDebugEnabled()) &#123;</span><br><span class="line">				log.debug(<span class="string">&quot;Sending remote event on bus: &quot;</span> + event);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="comment">//rabitmqTemplate send messsage</span></span><br><span class="line">			<span class="built_in">this</span>.cloudBusOutboundChannel.send(MessageBuilder.withPayload(event).build());</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@EventListener(classes = RemoteApplicationEvent.class)</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">acceptLocal</span><span class="params">(RemoteApplicationEvent event)</span> &#123;</span><br><span class="line">		<span class="keyword">if</span> (<span class="built_in">this</span>.serviceMatcher.isFromSelf(event)</span><br><span class="line">				&amp;&amp; !(event <span class="keyword">instanceof</span> AckRemoteApplicationEvent)) &#123;</span><br><span class="line">			<span class="keyword">if</span> (log.isDebugEnabled()) &#123;</span><br><span class="line">				log.debug(<span class="string">&quot;Sending remote event on bus: &quot;</span> + event);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="comment">//rabitmqTemplate send messsage</span></span><br><span class="line">			<span class="built_in">this</span>.cloudBusOutboundChannel.send(MessageBuilder.withPayload(event).build());</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
     </div>
 
