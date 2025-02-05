@@ -21,9 +21,9 @@
 
     <meta name="description" content="Winner winner chicken dinner !">
 <meta property="og:type" content="website">
-<meta property="og:title" content="鳖摸鱼啦~">
+<meta property="og:title" content="鳖摸鱼啦11~">
 <meta property="og:url" content="http://yoursite.com/index.html">
-<meta property="og:site_name" content="鳖摸鱼啦~">
+<meta property="og:site_name" content="鳖摸鱼啦11~">
 <meta property="og:description" content="Winner winner chicken dinner !">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="sweetink">
@@ -37,7 +37,7 @@
 <script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"index.html","title":""}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>鳖摸鱼啦~</title>
+<title>鳖摸鱼啦11~</title>
   
 
 
@@ -70,7 +70,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">鳖摸鱼啦~</h1>
+      <h1 class="site-title">鳖摸鱼啦11~</h1>
       <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">......</p>
@@ -149,17 +149,17 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">80</span>
+          <span class="site-state-item-count">81</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">分类</span>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-count">21</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -185,6 +185,104 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2023/04/23/lol-lcu-api/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="sweetink">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鳖摸鱼啦11~">
+      <meta itemprop="description" content="Winner winner chicken dinner !">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 鳖摸鱼啦11~">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/04/23/lol-lcu-api/" class="post-title-link" itemprop="url">lol-lcu-api</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-04-23 19:50:08" itemprop="dateCreated datePublished" datetime="2023-04-23T19:50:08+08:00">2023-04-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/LOL/" itemprop="url" rel="index"><span itemprop="name">LOL</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="LCU-API"><a href="#LCU-API" class="headerlink" title="LCU-API"></a>LCU-API</h1><h2 id="获取token"><a href="#获取token" class="headerlink" title="获取token"></a>获取token</h2><p>CMD以管理员权限运行，输入如下命令</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">wmic process where caption=&#x27;LeagueClientUx.exe&#x27; get commandline</span><br></pre></td></tr></table></figure>
+<p>得到如下结果</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">g:/英雄联盟/LeagueClient/LeagueClientUx.exe &quot;--riotclient-auth-token=63-Wr1ACdIS6EfVkuy9gig&quot; &quot;--riotclient-app-port=58789&quot; &quot;--riotclient-tencent&quot; &quot;--no-rads&quot; &quot;--disable-self-update&quot; &quot;--region=TENCENT&quot; &quot;--locale=zh_CN&quot; &quot;--t.lcdshost=hn1-cloud-feapp.lol.qq.com&quot; &quot;--t.chathost=hn1-cloud-ejabberd.lol.qq.com&quot; &quot;--t.lq=https://hn1-cloud-login.lol.qq.com:8443&quot; &quot;--t.storeurl=https://hn1-cloud-sr.lol.qq.com:8443&quot; &quot;--t.rmsurl=wss://hn1-cloud-rms.lol.qq.com&quot; &quot;--rso-auth.url=https://prod-rso.lol.qq.com:3000&quot; &quot;--rso_platform_id=HN1&quot; &quot;--rso-auth.client=lol&quot; &quot;--t.location=loltencent.gz1.HN1&quot; &quot;--tglog-endpoint=https://tglogsz.datamore.qq.com/lolcli/report/&quot; &quot;--ccs=https://hn1-cloud-cc.lol.qq.com:8093&quot; &quot;--entitlements-url=https://hn1-cloud-entitlements.lol.qq.com:28088/api/token/v1&quot; &quot;--dradis-endpoint=http://some.url&quot; &quot;--remoting-auth-token=fBHICcvvUudE4Fij_kpQuA&quot; &quot;--app-port=58831&quot; &quot;--install-directory=g:\鑻遍泟鑱旂洘\LeagueClient&quot; &quot;--app-name=LeagueClient&quot; &quot;--ux-name=LeagueClientUx&quot; &quot;--ux-helper-name=LeagueClientUxHelper&quot; &quot;--log-dir=LeagueClient Logs&quot; &quot;--crash-reporting=&quot; &quot;--crash-environment=HN1&quot; &quot;--app-log-file-path=g:/英雄联盟/LeagueClient/../Game/Logs/LeagueClient Logs/2023-04-23T19-21-31_24144_LeagueClient.log&quot; &quot;--app-pid=24144&quot; &quot;--output-base-dir=g:/鑻遍泟鑱旂洘/LeagueClient/../Game&quot; &quot;--no-proxy-server&quot; &quot;--ignore-certificate-errors&quot;</span><br></pre></td></tr></table></figure>
+
+<h2 id="参数说明"><a href="#参数说明" class="headerlink" title="参数说明"></a>参数说明</h2><p>客户端api使用的<code>https</code>协议，认证方式使用的是<code>Basic</code>,用户名为<code>riot</code></p>
+<h3 id="riot-client"><a href="#riot-client" class="headerlink" title="riot-client"></a>riot-client</h3><p><code>riotclient-auth-token</code> token</p>
+<p><code>riotclient-app-port</code> 端口号</p>
+<p>eg:</p>
+<p><code>GET https://127.0.0.1:50886/swagger/v2/swagger.json</code> 获取swagger文档说明</p>
+<p><code>GET https://127.0.0.1:58789/swagger/v3/openapi.json</code> </p>
+<h3 id="lcu-client"><a href="#lcu-client" class="headerlink" title="lcu-client"></a>lcu-client</h3><p><code>remoting-auth-token</code> token</p>
+<p><code>app-port</code> 端口号</p>
+<h1 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h1><p><a target="_blank" rel="noopener" href="https://127.0.0.1:55205/lol-player-report-sender/v1/end-of-game-reports">https://127.0.0.1:55205/lol-player-report-sender/v1/end-of-game-reports</a></p>
+<p>{“gameId”:8293338498,”categories”:[“NEGATIVE_ATTITUDE”,”VERBAL_ABUSE”,”HATE_SPEECH”],”offenderSummonerId”:2947216121,”offenderPuuid”:”42924433-abf2-568c-a318-41f80cb50e57”}</p>
+<p><a target="_blank" rel="noopener" href="https://pengu.lol/guide/lcu-request">https://pengu.lol/guide/lcu-request</a></p>
+<p><a target="_blank" rel="noopener" href="https://hextechdocs.dev/getting-started-with-the-lcu-websocket/">https://hextechdocs.dev/getting-started-with-the-lcu-websocket/</a></p>
+<p><a target="_blank" rel="noopener" href="https://riot-api-libraries.readthedocs.io/en/latest/lcu.html">https://riot-api-libraries.readthedocs.io/en/latest/lcu.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.nuget.org/packages/Camille.Lcu/">https://www.nuget.org/packages/Camille.Lcu/</a></p>
+<p><a target="_blank" rel="noopener" href="https://lcu.vivide.re/#operation--lol-chat-v1-me-put">https://lcu.vivide.re/#operation--lol-chat-v1-me-put</a></p>
+<p><a target="_blank" rel="noopener" href="https://developer.riotgames.com/docs/lol">https://developer.riotgames.com/docs/lol</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2023/03/07/WinDbg%E7%AC%A6%E5%8F%B7%E9%85%8D%E7%BD%AE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -193,12 +291,12 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鳖摸鱼啦~">
+      <meta itemprop="name" content="鳖摸鱼啦11~">
       <meta itemprop="description" content="Winner winner chicken dinner !">
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 鳖摸鱼啦~">
+      <meta itemprop="name" content="undefined | 鳖摸鱼啦11~">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
@@ -266,12 +364,12 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鳖摸鱼啦~">
+      <meta itemprop="name" content="鳖摸鱼啦11~">
       <meta itemprop="description" content="Winner winner chicken dinner !">
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 鳖摸鱼啦~">
+      <meta itemprop="name" content="undefined | 鳖摸鱼啦11~">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
@@ -348,12 +446,12 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鳖摸鱼啦~">
+      <meta itemprop="name" content="鳖摸鱼啦11~">
       <meta itemprop="description" content="Winner winner chicken dinner !">
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 鳖摸鱼啦~">
+      <meta itemprop="name" content="undefined | 鳖摸鱼啦11~">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
@@ -422,12 +520,12 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鳖摸鱼啦~">
+      <meta itemprop="name" content="鳖摸鱼啦11~">
       <meta itemprop="description" content="Winner winner chicken dinner !">
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 鳖摸鱼啦~">
+      <meta itemprop="name" content="undefined | 鳖摸鱼啦11~">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
@@ -511,12 +609,12 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鳖摸鱼啦~">
+      <meta itemprop="name" content="鳖摸鱼啦11~">
       <meta itemprop="description" content="Winner winner chicken dinner !">
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 鳖摸鱼啦~">
+      <meta itemprop="name" content="undefined | 鳖摸鱼啦11~">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
@@ -593,12 +691,12 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鳖摸鱼啦~">
+      <meta itemprop="name" content="鳖摸鱼啦11~">
       <meta itemprop="description" content="Winner winner chicken dinner !">
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 鳖摸鱼啦~">
+      <meta itemprop="name" content="undefined | 鳖摸鱼啦11~">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
@@ -665,12 +763,12 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鳖摸鱼啦~">
+      <meta itemprop="name" content="鳖摸鱼啦11~">
       <meta itemprop="description" content="Winner winner chicken dinner !">
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 鳖摸鱼啦~">
+      <meta itemprop="name" content="undefined | 鳖摸鱼啦11~">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
@@ -759,12 +857,12 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鳖摸鱼啦~">
+      <meta itemprop="name" content="鳖摸鱼啦11~">
       <meta itemprop="description" content="Winner winner chicken dinner !">
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 鳖摸鱼啦~">
+      <meta itemprop="name" content="undefined | 鳖摸鱼啦11~">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
@@ -865,12 +963,12 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鳖摸鱼啦~">
+      <meta itemprop="name" content="鳖摸鱼啦11~">
       <meta itemprop="description" content="Winner winner chicken dinner !">
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 鳖摸鱼啦~">
+      <meta itemprop="name" content="undefined | 鳖摸鱼啦11~">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
@@ -925,78 +1023,8 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/07/01/%E5%B8%B8%E8%A7%81%E6%A1%86%E6%9E%B6HOOK%E7%82%B9/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="sweetink">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鳖摸鱼啦~">
-      <meta itemprop="description" content="Winner winner chicken dinner !">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 鳖摸鱼啦~">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/07/01/%E5%B8%B8%E8%A7%81%E6%A1%86%E6%9E%B6HOOK%E7%82%B9/" class="post-title-link" itemprop="url">常见框架HOOK点.</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-07-01 05:13:06" itemprop="dateCreated datePublished" datetime="2022-07-01T05:13:06+08:00">2022-07-01</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="后端"><a href="#后端" class="headerlink" title="后端"></a>后端</h1><h2 id="java"><a href="#java" class="headerlink" title="java"></a>java</h2><h3 id="mybatis"><a href="#mybatis" class="headerlink" title="mybatis"></a>mybatis</h3><p>查看最终mapper方法生成的SQL</p>
-<p><code>org.apache.ibatis.binding.MapperMethod#execute</code><br><code>org.apache.ibatis.executor.ReuseExecutor#doUpdate</code><br><code>org.apache.ibatis.executor.ReuseExecutor#doQuery</code></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>
@@ -1008,7 +1036,7 @@
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2023</span>
+  <span itemprop="copyrightYear">2025</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

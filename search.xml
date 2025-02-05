@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>lol-lcu-api</title>
+      <link href="/2023/04/23/lol-lcu-api/"/>
+      <url>/2023/04/23/lol-lcu-api/</url>
+      
+        <content type="html"><![CDATA[<h1 id="LCU-API"><a href="#LCU-API" class="headerlink" title="LCU-API"></a>LCU-API</h1><h2 id="获取token"><a href="#获取token" class="headerlink" title="获取token"></a>获取token</h2><p>CMD以管理员权限运行，输入如下命令</p><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">wmic process where caption=&#x27;LeagueClientUx.exe&#x27; get commandline</span><br></pre></td></tr></table></figure><p>得到如下结果</p><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">g:/英雄联盟/LeagueClient/LeagueClientUx.exe &quot;--riotclient-auth-token=63-Wr1ACdIS6EfVkuy9gig&quot; &quot;--riotclient-app-port=58789&quot; &quot;--riotclient-tencent&quot; &quot;--no-rads&quot; &quot;--disable-self-update&quot; &quot;--region=TENCENT&quot; &quot;--locale=zh_CN&quot; &quot;--t.lcdshost=hn1-cloud-feapp.lol.qq.com&quot; &quot;--t.chathost=hn1-cloud-ejabberd.lol.qq.com&quot; &quot;--t.lq=https://hn1-cloud-login.lol.qq.com:8443&quot; &quot;--t.storeurl=https://hn1-cloud-sr.lol.qq.com:8443&quot; &quot;--t.rmsurl=wss://hn1-cloud-rms.lol.qq.com&quot; &quot;--rso-auth.url=https://prod-rso.lol.qq.com:3000&quot; &quot;--rso_platform_id=HN1&quot; &quot;--rso-auth.client=lol&quot; &quot;--t.location=loltencent.gz1.HN1&quot; &quot;--tglog-endpoint=https://tglogsz.datamore.qq.com/lolcli/report/&quot; &quot;--ccs=https://hn1-cloud-cc.lol.qq.com:8093&quot; &quot;--entitlements-url=https://hn1-cloud-entitlements.lol.qq.com:28088/api/token/v1&quot; &quot;--dradis-endpoint=http://some.url&quot; &quot;--remoting-auth-token=fBHICcvvUudE4Fij_kpQuA&quot; &quot;--app-port=58831&quot; &quot;--install-directory=g:\鑻遍泟鑱旂洘\LeagueClient&quot; &quot;--app-name=LeagueClient&quot; &quot;--ux-name=LeagueClientUx&quot; &quot;--ux-helper-name=LeagueClientUxHelper&quot; &quot;--log-dir=LeagueClient Logs&quot; &quot;--crash-reporting=&quot; &quot;--crash-environment=HN1&quot; &quot;--app-log-file-path=g:/英雄联盟/LeagueClient/../Game/Logs/LeagueClient Logs/2023-04-23T19-21-31_24144_LeagueClient.log&quot; &quot;--app-pid=24144&quot; &quot;--output-base-dir=g:/鑻遍泟鑱旂洘/LeagueClient/../Game&quot; &quot;--no-proxy-server&quot; &quot;--ignore-certificate-errors&quot;</span><br></pre></td></tr></table></figure><h2 id="参数说明"><a href="#参数说明" class="headerlink" title="参数说明"></a>参数说明</h2><p>客户端api使用的<code>https</code>协议，认证方式使用的是<code>Basic</code>,用户名为<code>riot</code></p><h3 id="riot-client"><a href="#riot-client" class="headerlink" title="riot-client"></a>riot-client</h3><p><code>riotclient-auth-token</code> token</p><p><code>riotclient-app-port</code> 端口号</p><p>eg:</p><p><code>GET https://127.0.0.1:50886/swagger/v2/swagger.json</code> 获取swagger文档说明</p><p><code>GET https://127.0.0.1:58789/swagger/v3/openapi.json</code> </p><h3 id="lcu-client"><a href="#lcu-client" class="headerlink" title="lcu-client"></a>lcu-client</h3><p><code>remoting-auth-token</code> token</p><p><code>app-port</code> 端口号</p><h1 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h1><p><a href="https://127.0.0.1:55205/lol-player-report-sender/v1/end-of-game-reports">https://127.0.0.1:55205/lol-player-report-sender/v1/end-of-game-reports</a></p><p>{“gameId”:8293338498,”categories”:[“NEGATIVE_ATTITUDE”,”VERBAL_ABUSE”,”HATE_SPEECH”],”offenderSummonerId”:2947216121,”offenderPuuid”:”42924433-abf2-568c-a318-41f80cb50e57”}</p><p><a href="https://pengu.lol/guide/lcu-request">https://pengu.lol/guide/lcu-request</a></p><p><a href="https://hextechdocs.dev/getting-started-with-the-lcu-websocket/">https://hextechdocs.dev/getting-started-with-the-lcu-websocket/</a></p><p><a href="https://riot-api-libraries.readthedocs.io/en/latest/lcu.html">https://riot-api-libraries.readthedocs.io/en/latest/lcu.html</a></p><p><a href="https://www.nuget.org/packages/Camille.Lcu/">https://www.nuget.org/packages/Camille.Lcu/</a></p><p><a href="https://lcu.vivide.re/#operation--lol-chat-v1-me-put">https://lcu.vivide.re/#operation--lol-chat-v1-me-put</a></p><p><a href="https://developer.riotgames.com/docs/lol">https://developer.riotgames.com/docs/lol</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> LOL </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> lcu-api </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>WinDbg符号配置.</title>
       <link href="/2023/03/07/WinDbg%E7%AC%A6%E5%8F%B7%E9%85%8D%E7%BD%AE/"/>
       <url>/2023/03/07/WinDbg%E7%AC%A6%E5%8F%B7%E9%85%8D%E7%BD%AE/</url>
