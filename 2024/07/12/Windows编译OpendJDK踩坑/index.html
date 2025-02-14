@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha256-/4UQcSmErDzPCMAiuOiWPVVsNN2s3ZY/NsmXNcj0IFc=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"yoursite.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.15.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"default"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="编译下载源码AdoptOpenJDK&#x2F;openjdk-jdk11u jdk-updates 准备boot JDKJDK release C:\Program Files (x86)\Tencent\微信web开发者工具\dll 安装vs2017 使用C++的桌面开发  通用Windows平台开发  语言包选择English   cygwin安装必要软件包&lt;path to Cygwi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Windows编译OpenJDK踩坑(持续更新).">
+<meta property="og:url" content="http://yoursite.com/2024/07/12/Windows%E7%BC%96%E8%AF%91OpendJDK%E8%B8%A9%E5%9D%91/index.html">
+<meta property="og:site_name" content="随记">
+<meta property="og:description" content="编译下载源码AdoptOpenJDK&#x2F;openjdk-jdk11u jdk-updates 准备boot JDKJDK release C:\Program Files (x86)\Tencent\微信web开发者工具\dll 安装vs2017 使用C++的桌面开发  通用Windows平台开发  语言包选择English   cygwin安装必要软件包&lt;path to Cygwi">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-07-11T19:54:04.000Z">
+<meta property="article:modified_time" content="2025-02-05T10:48:29.391Z">
+<meta property="article:author" content="sweetink">
+<meta property="article:tag" content="debug">
+<meta property="article:tag" content="openjdk">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://yoursite.com/2024/07/12/Windows%E7%BC%96%E8%AF%91OpendJDK%E8%B8%A9%E5%9D%91/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://yoursite.com/2024/07/12/Windows%E7%BC%96%E8%AF%91OpendJDK%E8%B8%A9%E5%9D%91/","path":"2024/07/12/Windows编译OpendJDK踩坑/","title":"Windows编译OpenJDK踩坑(持续更新)."}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Windows编译OpenJDK踩坑(持续更新). | 随记</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">随记</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">......</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-demo"><a href="/demo/" rel="section"><i class="fa fa-flask fa-fw"></i>demo</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BC%96%E8%AF%91"><span class="nav-number">1.</span> <span class="nav-text">编译</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E6%BA%90%E7%A0%81"><span class="nav-number">1.1.</span> <span class="nav-text">下载源码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%86%E5%A4%87boot-JDK"><span class="nav-number">1.2.</span> <span class="nav-text">准备boot JDK</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85vs2017"><span class="nav-number">1.3.</span> <span class="nav-text">安装vs2017</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cygwin"><span class="nav-number">1.4.</span> <span class="nav-text">cygwin</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E5%BF%85%E8%A6%81%E8%BD%AF%E4%BB%B6%E5%8C%85"><span class="nav-number">1.4.1.</span> <span class="nav-text">安装必要软件包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#configu-amp-compile"><span class="nav-number">1.4.2.</span> <span class="nav-text">configu &amp; compile</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8wsl%E7%BC%96%E8%AF%91"><span class="nav-number">2.</span> <span class="nav-text">使用wsl编译</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E5%BF%85%E8%A6%81%E8%BD%AF%E4%BB%B6%E5%8C%85-1"><span class="nav-number">2.1.</span> <span class="nav-text">安装必要软件包</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Clion-Debug"><span class="nav-number">3.</span> <span class="nav-text">Clion Debug</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%AE%E9%A2%98"><span class="nav-number">4.</span> <span class="nav-text">问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#assert-strcmp-value-system-value-x3D-x3D-0-failed-property-value-mustn%E2%80%99t-differ-from-System-getProperty"><span class="nav-number">4.1.</span> <span class="nav-text">assert(strcmp(value, system_value) &#x3D;&#x3D; 0) failed: property value mustn’t differ from System.getProperty</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A5%E5%85%851"><span class="nav-number">4.1.1.</span> <span class="nav-text">补充1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A5%E5%85%852"><span class="nav-number">4.1.2.</span> <span class="nav-text">补充2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A5%E5%85%853"><span class="nav-number">4.1.3.</span> <span class="nav-text">补充3</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#complication-database-json-%E5%AF%BC%E5%85%A5clion%E6%97%A0%E6%B3%95%E6%AD%A3%E7%A1%AE%E7%BC%96%E8%AF%91"><span class="nav-number">4.2.</span> <span class="nav-text">complication-database.json 导入clion无法正确编译</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ref"><span class="nav-number">4.2.1.</span> <span class="nav-text">ref</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Can-not-determine-compiler"><span class="nav-number">4.3.</span> <span class="nav-text">Can not determine compiler</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Clion-plugins"><span class="nav-number">4.3.1.</span> <span class="nav-text">Clion plugins</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cidr-base-plugin-jar"><span class="nav-number">4.3.2.</span> <span class="nav-text">cidr-base-plugin.jar</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#clion-compdb-jar"><span class="nav-number">4.3.3.</span> <span class="nav-text">clion-compdb.jar</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="nav-number">4.3.4.</span> <span class="nav-text">解决方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#reference"><span class="nav-number">5.</span> <span class="nav-text">reference</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">sweetink</p>
+  <div class="site-description" itemprop="description">Always remember us this way</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">79</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2024/07/12/Windows%E7%BC%96%E8%AF%91OpendJDK%E8%B8%A9%E5%9D%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="sweetink">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="随记">
+      <meta itemprop="description" content="Always remember us this way">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Windows编译OpenJDK踩坑(持续更新). | 随记">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Windows编译OpenJDK踩坑(持续更新).
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-07-12 03:54:04" itemprop="dateCreated datePublished" datetime="2024-07-12T03:54:04+08:00">2024-07-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h1><h2 id="下载源码"><a href="#下载源码" class="headerlink" title="下载源码"></a>下载源码</h2><p><a target="_blank" rel="noopener" href="https://github.com/AdoptOpenJDK/openjdk-jdk11u">AdoptOpenJDK&#x2F;openjdk-jdk11u</a></p>
+<p><a target="_blank" rel="noopener" href="https://hg.openjdk.org/jdk-updates/jdk11u/tags">jdk-updates</a></p>
+<h2 id="准备boot-JDK"><a href="#准备boot-JDK" class="headerlink" title="准备boot JDK"></a>准备boot JDK</h2><p><a target="_blank" rel="noopener" href="https://jdk.java.net/">JDK release</a></p>
+<p><code>C:\Program Files (x86)\Tencent\微信web开发者工具\dll</code></p>
+<h2 id="安装vs2017"><a href="#安装vs2017" class="headerlink" title="安装vs2017"></a>安装vs2017</h2><ul>
+<li><p>使用C++的桌面开发</p>
+</li>
+<li><p>通用Windows平台开发</p>
+</li>
+<li><p>语言包选择English</p>
+</li>
+</ul>
+<h2 id="cygwin"><a href="#cygwin" class="headerlink" title="cygwin"></a>cygwin</h2><h3 id="安装必要软件包"><a href="#安装必要软件包" class="headerlink" title="安装必要软件包"></a>安装必要软件包</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;path to Cygwin setup&gt;/setup-x86_64 -q -P autoconf -P make -P unzip -P zip</span><br></pre></td></tr></table></figure>
+<h3 id="configu-amp-compile"><a href="#configu-amp-compile" class="headerlink" title="configu &amp; compile"></a>configu &amp; compile</h3><p>配置</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd path/openjdk17</span><br><span class="line"></span><br><span class="line">bash configure --with-debug-level=slowdebug --with-jvm-variants=server --disable-zip-debug-info --disable-warnings-as-errors --with-boot-jdk=/mnt/d/Aproject/openjdk/</span><br></pre></td></tr></table></figure>
+
+<p>编译</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">make LOG=info</span><br></pre></td></tr></table></figure>
+
+<p>生成compile-database</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">make compile-commands</span><br></pre></td></tr></table></figure>
+
+<h1 id="使用wsl编译"><a href="#使用wsl编译" class="headerlink" title="使用wsl编译"></a>使用wsl编译</h1><h2 id="安装必要软件包-1"><a href="#安装必要软件包-1" class="headerlink" title="安装必要软件包"></a>安装必要软件包</h2><p>下载好jdk源码后，解压到<code>d:\openjdk\jdk11u</code></p>
+<p>打开wsl shell，进入jdk源码目录</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd /mnt/d/openjdk/jdk11u</span><br></pre></td></tr></table></figure>
+
+<p>配置</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bash configure --with-debug-level=slowdebug --with-jvm-variants=server --disable-zip-debug-info --disable-warnings-as-errors --with-boot-jdk=/mnt/d/Aproject/openjdk/</span><br></pre></td></tr></table></figure>
+<p>编译</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">make</span><br></pre></td></tr></table></figure>
+
+<p>生成 compile database</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">make compile-commands</span><br></pre></td></tr></table></figure>
+
+<p>编译特定的模块</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">make CONF=config java.base-lib</span><br></pre></td></tr></table></figure>
+<h1 id="Clion-Debug"><a href="#Clion-Debug" class="headerlink" title="Clion Debug"></a>Clion Debug</h1><p><code>Run/Debug Configurations &gt; new Custom Build Application</code></p>
+<p><code>name: jdk11-spring-boot-debug</code></p>
+<p><code>Executeble:build\jdk\bin\java.exe</code></p>
+<p><code>Program arguments:</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-Xdebug -XX:+UseSerialGC -Xrunjdwp:server=y,transport=dt_socket,address=8099,suspend=n -Xlog:gc -Xms1000M -Xmn1000M -XX:-DoEscapeAnalysis -XX:+UseTLAB -XX:-ResizeTLAB -jar &quot;D:\AProject\edian\backend\etc\api\certification-service\target\cs1.jar&quot; -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintCompilation -XX:+PrintInlining -XX:CompileCommand=quiet</span><br></pre></td></tr></table></figure>
+
+<p><code>Environment variables:</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">_JAVA_LAUNCHER_DEBUG =1 </span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>ref code: <code>src/java.base/share/native/launcher/main.c:146</code><br> <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifdef</span> _WIN32</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> i = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">getenv</span>(JLDEBUG_ENV_ENTRY) != <span class="literal">NULL</span>) &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;Windows original main args:\n&quot;</span>);</span><br><span class="line">            <span class="keyword">for</span> (i = <span class="number">0</span> ; i &lt; __argc ; i++) &#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;wwwd_args[%d] = %s\n&quot;</span>, i, __argv[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><h2 id="assert-strcmp-value-system-value-x3D-x3D-0-failed-property-value-mustn’t-differ-from-System-getProperty"><a href="#assert-strcmp-value-system-value-x3D-x3D-0-failed-property-value-mustn’t-differ-from-System-getProperty" class="headerlink" title="assert(strcmp(value, system_value) &#x3D;&#x3D; 0) failed: property value mustn’t differ from System.getProperty"></a>assert(strcmp(value, system_value) &#x3D;&#x3D; 0) failed: property value mustn’t differ from System.getProperty</h2><p>出现这个问题，通常日志如下</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># To suppress the following error report, specify this argument</span><br><span class="line"># after -XX: or in .hotspotrc:  SuppressErrorAt=\statSampler.cpp:204</span><br><span class="line">#</span><br><span class="line"># A fatal error has been detected by the Java Runtime Environment:</span><br><span class="line">#</span><br><span class="line">#  Internal Error (d:\aproject\openjdk\jdk17\src\hotspot\share\runtime\statSampler.cpp:204), pid=4488, tid=21828</span><br><span class="line">#  assert(strcmp(value, system_value) == 0) failed: property value mustn&#x27;t differ from System.getProperty</span><br><span class="line">#</span><br><span class="line"># JRE version: OpenJDK Runtime Environment (17.0) (slowdebug build 17-internal+0-adhoc.edian.jdk17)</span><br><span class="line"># Java VM: OpenJDK 64-Bit Server VM (slowdebug 17-internal+0-adhoc.edian.jdk17, mixed mode, tiered, compressed oops, com</span><br><span class="line">pressed class ptrs, g1 gc, windows-amd64)</span><br><span class="line"># Core dump will be written. Default location: D:\AProject\openjdk\jdk17\build\windows-x86_64-server-slowdebug\jdk\bin\h</span><br><span class="line">s_err_pid4488.mdmp</span><br></pre></td></tr></table></figure>
+<p>该问题是由于在<code>bash configure</code>阶段，启用了调试，如<code>--with-debug-level=*debug</code> (*指的是 <code>slow</code>,<code>fast</code>)<br>相关定义可在如下文件找到</p>
+<p><code>make/hotspot/lib/JvmFlags.gmk:81</code></p>
+<figure class="highlight make"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">ifeq</span> (<span class="variable">$(DEBUG_LEVEL)</span>, release)</span><br><span class="line">  <span class="comment"># For hotspot, release builds differ internally between &quot;optimized&quot; and &quot;product&quot;</span></span><br><span class="line">  <span class="comment"># in that &quot;optimize&quot; does not define PRODUCT.</span></span><br><span class="line">  <span class="keyword">ifneq</span> (<span class="variable">$(HOTSPOT_DEBUG_LEVEL)</span>, optimized)</span><br><span class="line">    JVM_CFLAGS_DEBUGLEVEL := -DPRODUCT</span><br><span class="line">  <span class="keyword">endif</span></span><br><span class="line"><span class="keyword">else</span> <span class="keyword">ifeq</span> (<span class="variable">$(DEBUG_LEVEL)</span>, fastdebug)</span><br><span class="line">  JVM_CFLAGS_DEBUGLEVEL := -DASSERT</span><br><span class="line">  <span class="keyword">ifeq</span> (<span class="variable">$(<span class="built_in">call</span> isTargetOs, windows aix)</span>, false)</span><br><span class="line">    <span class="comment"># <span class="doctag">NOTE:</span> Old build did not define CHECK_UNHANDLED_OOPS on Windows and AIX.</span></span><br><span class="line">    JVM_CFLAGS_DEBUGLEVEL += -DCHECK_UNHANDLED_OOPS</span><br><span class="line">  <span class="keyword">endif</span></span><br><span class="line"><span class="keyword">else</span> <span class="keyword">ifeq</span> (<span class="variable">$(DEBUG_LEVEL)</span>, slowdebug)</span><br><span class="line">  <span class="comment"># _NMT_NOINLINE_ informs NMT that no inlining is done by the compiler</span></span><br><span class="line">  JVM_CFLAGS_DEBUGLEVEL := -DASSERT -D_NMT_NOINLINE_</span><br><span class="line"><span class="keyword">endif</span></span><br></pre></td></tr></table></figure>
+
+<p>定位到相关源码则是</p>
+<p><code>statSampler.cpp:180</code></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">StatSampler::assert_system_property</span><span class="params">(<span class="type">const</span> <span class="type">char</span>* name, <span class="type">const</span> <span class="type">char</span>* value, TRAPS)</span> </span>&#123;</span><br><span class="line"><span class="meta">#<span class="keyword">ifdef</span> ASSERT</span></span><br><span class="line">  <span class="function">ResourceMark <span class="title">rm</span><span class="params">(THREAD)</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// setup the arguments to getProperty</span></span><br><span class="line">  Handle key_str   = java_lang_String::<span class="built_in">create_from_str</span>(name, CHECK);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// return value</span></span><br><span class="line">  <span class="function">JavaValue <span class="title">result</span><span class="params">(T_OBJECT)</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// public static String getProperty(String key, String def);</span></span><br><span class="line">  JavaCalls::<span class="built_in">call_static</span>(&amp;result,</span><br><span class="line">                         vmClasses::<span class="built_in">System_klass</span>(),</span><br><span class="line">                         vmSymbols::<span class="built_in">getProperty_name</span>(),</span><br><span class="line">                         vmSymbols::<span class="built_in">string_string_signature</span>(),</span><br><span class="line">                         key_str, </span><br><span class="line">                         CHECK);</span><br><span class="line"></span><br><span class="line">  oop value_oop = result.<span class="built_in">get_oop</span>();</span><br><span class="line">  <span class="built_in">assert</span>(value_oop != <span class="literal">NULL</span>, <span class="string">&quot;property must have a value&quot;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// convert Java String to utf8 string</span></span><br><span class="line">  <span class="type">char</span>* system_value = java_lang_String::<span class="built_in">as_utf8_string</span>(value_oop);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;\tA system value: %s -&gt; \n%s\n\n&quot;</span>,name,system_value);</span><br><span class="line">  <span class="built_in">assert</span>(<span class="built_in">strcmp</span>(value, system_value) == <span class="number">0</span>, <span class="string">&quot;property value mustn&#x27;t differ from System.getProperty&quot;</span>);</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span> <span class="comment">// ASSERT</span></span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当比较到<code>value</code>和<code>system_value</code>不相等时，会抛出异常，</p>
+<p>通过断点调试</p>
+<p>此时的<code>char* name</code>值为<code>java.library.path</code></p>
+<p><del>是由于环境变量<code>PATH</code>中包含了带有中文的路径，导致<code>system_value</code>转换为utf8时，中文字符转换为乱码，导致<code>strcmp</code>不相等，从而抛出异常。</del></p>
+<p>解决办法：把<code>PATH</code>中的中文路径去掉，或者<code>bash configure</code>阶段不要启用调试</p>
+<h3 id="补充1"><a href="#补充1" class="headerlink" title="补充1"></a>补充1</h3><p>如果是Windows平台 此时<code>value</code>中存储的是<code>GBK</code>编码后的<code>path</code>值，value_oop存储的是<code>UTF-16(LE)</code>编码后的<code>path</code>值，经过</p>
+<p><code>char* system_value = java_lang_String::as_utf8_string(value_oop);</code> 后，<code>system_value</code>存储的是<code>utf8编码后的path</code>值，这个时候<code>strcmp</code>比较字符串的结果是不相等的（因为有中文）</p>
+<h3 id="补充2"><a href="#补充2" class="headerlink" title="补充2"></a>补充2</h3><p>假如<code>path</code>含有<code>中文</code>字符  eg：<code>c:\Hello\Abc-ZH-中文-Abc;</code></p>
+<p>则有如下</p>
+<table>
+<thead>
+<tr>
+<th>字符</th>
+<th>GBK</th>
+<th>UTF16</th>
+<th>UTF8</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>中</td>
+<td>D6D0</td>
+<td>4E2D</td>
+<td>E4B8AD</td>
+</tr>
+<tr>
+<td>文</td>
+<td>CEC4</td>
+<td>6587</td>
+<td>E69687</td>
+</tr>
+</tbody></table>
+<p><code>value</code>内存中的值（GBK编码）</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">6d 33 32 3b   43 3a 5c 57   49 4e 44 4f   57 53 3b 63   │ m32;C:\WINDOWS;c │</span><br><span class="line">3a 5c 48 65   6c 6c 6f 5c   41 62 63 2d   5a 48 2d d6   │ :\Hello\Abc-ZH-· │</span><br><span class="line">d0 ce c4 2d   41 62 63 3b   43 3a 5c 47   6e 75 57 69   │ ···-Abc;C:\GnuWi │</span><br></pre></td></tr></table></figure>
+
+<p><code>value_oop</code> 在内存中的值(因为使用UTF16LE编码，所以字节序和大端模式相反)</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">57 00 53 00   3b 00 63 00   3a 00 5c 00   48 00 65 00   │ W·S·;·c·:·\·H·e· │</span><br><span class="line">6c 00 6c 00   6f 00 5c 00   41 00 62 00   63 00 2d 00   │ l·l·o·\·A·b·c·-· │</span><br><span class="line">5a 00 48 00   2d 00 2d 4e   87 65 2d 00   41 00 62 00   │ Z·H·-·-N·e-·A·b· │</span><br><span class="line">63 00 3b 00   43 00 3a 00   5c 00 47 00   6e 00 75 00   │ c·;·C·:·\·G·n·u· │</span><br><span class="line">57 00 69 00   6e 00 33 00   32 00 5c 00   62 00 69 00   │ W·i·n·3·2·\·b·i· │</span><br></pre></td></tr></table></figure>
+<p><code>system_value</code>在内存中的值（UTF8编码）</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">6d 33 32 3b   43 3a 5c 57   49 4e 44 4f   57 53 3b 63   │ m32;C:\WINDOWS;c │</span><br><span class="line">3a 5c 48 65   6c 6c 6f 5c   41 62 63 2d   5a 48 2d e4   │ :\Hello\Abc-ZH-· │</span><br><span class="line">b8 ad e6 96   87 2d 41 62   63 3b 43 3a   5c 47 6e 75   │ ·····-Abc;C:\Gnu │</span><br></pre></td></tr></table></figure>
+<h3 id="补充3"><a href="#补充3" class="headerlink" title="补充3"></a>补充3</h3><p><code>utf8</code> 最小代码单元是一个字节</p>
+<p><code>utf16</code> 的最小代码单元是2个字节</p>
+<h2 id="complication-database-json-导入clion无法正确编译"><a href="#complication-database-json-导入clion无法正确编译" class="headerlink" title="complication-database.json 导入clion无法正确编译"></a>complication-database.json 导入clion无法正确编译</h2><p>使用<code>make compile-commands</code> 生成 <code>compilation-database.json</code></p>
+<p>将其导入到clion中，出现编译错误，原因是因为json中的编译命令路径问题，需要把<br><code>\\\\</code> 和 <code>\\</code> 替换为<code>/</code>,然后重新导入即可。</p>
+<p>arguments.cpp 969 解析+-参数选项<br>1162 解析JVM -XX参数</p>
+<h3 id="ref"><a href="#ref" class="headerlink" title="ref"></a>ref</h3><ol>
+<li><p>jvm char*在内存中的存储方式为小端模式</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://www.mytju.com/classcode/tools/encode_gb2312.asp">查看字符编码</a></p>
+</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://www.qqxiuzi.cn/bianma/Unicode-UTF.php">Unicode和UTF编码转换</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/throwable/p/9188439.html"></a></p>
+<ol start="3">
+<li>jstring 转char*<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">jstring value_oop;</span><br><span class="line">java_lang_String::<span class="built_in">as_utf8_string</span>(value_oop)</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="Can-not-determine-compiler"><a href="#Can-not-determine-compiler" class="headerlink" title="Can not determine compiler"></a>Can not determine compiler</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Cannot determine compiler type by executable file: &#x27;C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.16.27023\bin\Hostx86\x64\ml64.exe&#x27;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="Clion-plugins"><a href="#Clion-plugins" class="headerlink" title="Clion plugins"></a>Clion plugins</h3><h3 id="cidr-base-plugin-jar"><a href="#cidr-base-plugin-jar" class="headerlink" title="cidr-base-plugin.jar"></a>cidr-base-plugin.jar</h3><p>定义了各种编译器匹配实现，以及编译器调用逻辑</p>
+<p><code>OCCompilerResolver</code> 编译器解析工具</p>
+<p><code>OCBuiltInCompilerResolver</code> 默认实现类</p>
+<p>主要匹配以下编译器</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Map&lt;String, OCCompilerKind&gt; compilerCache = MapsKt.mapOf(</span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">Pair</span>[]&#123;</span><br><span class="line">                TuplesKt.to(<span class="string">&quot;cl&quot;</span>, MSVCCompilerKind.INSTANCE),</span><br><span class="line">                TuplesKt.to(<span class="string">&quot;gcc&quot;</span>, GCCCompilerKind.INSTANCE),</span><br><span class="line">                TuplesKt.to(<span class="string">&quot;g++&quot;</span>, GCCCompilerKind.INSTANCE),</span><br><span class="line">                TuplesKt.to(<span class="string">&quot;xgcc&quot;</span>, GCCCompilerKind.INSTANCE),</span><br><span class="line">                TuplesKt.to(<span class="string">&quot;xg++&quot;</span>, GCCCompilerKind.INSTANCE),</span><br><span class="line">                TuplesKt.to(<span class="string">&quot;colorgcc&quot;</span>, GCCCompilerKind.INSTANCE),</span><br><span class="line">                TuplesKt.to(<span class="string">&quot;cc&quot;</span>, GCCCompilerKind.INSTANCE),</span><br><span class="line">                TuplesKt.to(<span class="string">&quot;c++&quot;</span>, GCCCompilerKind.INSTANCE),</span><br><span class="line">                TuplesKt.to(<span class="string">&quot;cpp&quot;</span>, GCCCompilerKind.INSTANCE),</span><br><span class="line">                TuplesKt.to(<span class="string">&quot;clang&quot;</span>, ClangCompilerKind.INSTANCE),</span><br><span class="line">                TuplesKt.to(<span class="string">&quot;clang++&quot;</span>, ClangCompilerKind.INSTANCE),</span><br><span class="line">                TuplesKt.to(<span class="string">&quot;emcc&quot;</span>, ClangCompilerKind.INSTANCE),</span><br><span class="line">                TuplesKt.to(<span class="string">&quot;em++&quot;</span>, ClangCompilerKind.INSTANCE),</span><br><span class="line">                TuplesKt.to(<span class="string">&quot;tiarmclang&quot;</span>, ClangCompilerKind.INSTANCE),</span><br><span class="line">                TuplesKt.to(<span class="string">&quot;nvcc&quot;</span>, NVCCCompilerKind.INSTANCE),</span><br><span class="line">                TuplesKt.to(OCBuiltInCompilerKindProvider.CLANG_CL_ID, ClangClCompilerKind.INSTANCE),</span><br><span class="line">                TuplesKt.to(<span class="string">&quot;icl&quot;</span>, MSVCCompilerKind.INSTANCE),</span><br><span class="line">                TuplesKt.to(<span class="string">&quot;icc&quot;</span>, GCCCompilerKind.INSTANCE),</span><br><span class="line">                TuplesKt.to(<span class="string">&quot;icpc&quot;</span>, GCCCompilerKind.INSTANCE),</span><br><span class="line">                TuplesKt.to(<span class="string">&quot;dpcpp-cl&quot;</span>, ClangClCompilerKind.INSTANCE)</span><br><span class="line">        &#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<h3 id="clion-compdb-jar"><a href="#clion-compdb-jar" class="headerlink" title="clion-compdb.jar"></a>clion-compdb.jar</h3><p>主要用于解析<a target="_blank" rel="noopener" href="https://clang.llvm.org/docs/JSONCompilationDatabase.html">compile-commands.json</a></p>
+<p>结构如下</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">[</span></span><br><span class="line">  <span class="punctuation">&#123;</span> <span class="attr">&quot;directory&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/home/user/llvm/build&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;arguments&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;/usr/bin/clang++&quot;</span><span class="punctuation">,</span> <span class="string">&quot;-Irelative&quot;</span><span class="punctuation">,</span> <span class="string">&quot;-DSOMEDEF=With spaces, quotes and \\-es.&quot;</span><span class="punctuation">,</span> <span class="string">&quot;-c&quot;</span><span class="punctuation">,</span> <span class="string">&quot;-o&quot;</span><span class="punctuation">,</span> <span class="string">&quot;file.o&quot;</span><span class="punctuation">,</span> <span class="string">&quot;file.cc&quot;</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;file&quot;</span><span class="punctuation">:</span> <span class="string">&quot;file.cc&quot;</span> <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line"></span><br><span class="line">  <span class="punctuation">&#123;</span> <span class="attr">&quot;directory&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/home/user/llvm/build&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;command&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/usr/bin/clang++ -Irelative -DSOMEDEF=\&quot;With spaces, quotes and \\-es.\&quot; -c -o file.o file.cc&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;file&quot;</span><span class="punctuation">:</span> <span class="string">&quot;file2.cc&quot;</span> <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line"></span><br><span class="line">  ...</span><br><span class="line"><span class="punctuation">]</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>当通过<code>Clion</code>打开<code>compile-commands.json</code>后，会进行<code>Sync</code>操作，触发<code>CompDBProjectResolver#resolveProjectInfo</code></p>
+<p>通过遍历<code>compile-commands.json</code>中的<code>command</code>值，校验<code>command</code>是否符合 <code>cidr-base-plugin.jar</code>中定义的编译器。</p>
+<p>如果<code>command</code>中的命令不符合上述的编译器，那么会出现<code> Cannot determine compiler type by executable file: &#39;/path/xxx&#39;</code> 这个错误，导致导入失败</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title function_">reportUnresolvedCompilers</span><span class="params">(ExternalSystemTaskId resolveTaskId, Set&lt;? extends File&gt; set, ExternalSystemTaskNotificationListener listener, String parentEventId)</span> &#123;</span><br><span class="line">     <span class="keyword">if</span> (set.isEmpty()) &#123;</span><br><span class="line">         <span class="keyword">return</span>;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">for</span> (File compiler : set) &#123;</span><br><span class="line">         <span class="type">String</span> <span class="variable">message</span> <span class="operator">=</span> CompDBBundle.message(<span class="string">&quot;project.resolver.cannot.resolve.compiler.error&quot;</span>, compiler);</span><br><span class="line">         Intrinsics.checkNotNullExpressionValue(message, <span class="string">&quot;CompDBBundle.message(\&quot;pr…ompiler.error\&quot;, compiler)&quot;</span>);</span><br><span class="line">         listener.onTaskOutput(resolveTaskId, message + <span class="string">&quot;\n&quot;</span>, <span class="literal">false</span>);</span><br><span class="line">         CompDBLog.INSTANCE.getLOG().debug(message);</span><br><span class="line">         <span class="type">String</span> <span class="variable">compilerEventId</span> <span class="operator">=</span> <span class="string">&quot;unresolved-compiler:&quot;</span> + UUID.randomUUID();</span><br><span class="line">         <span class="type">OperationDescriptor</span> <span class="variable">taskOperationDescriptorImpl</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">TaskOperationDescriptorImpl</span>(message, System.currentTimeMillis(), <span class="string">&quot;unresolved-compiler&quot;</span>);</span><br><span class="line">         <span class="type">ExternalSystemProgressEvent</span> <span class="variable">externalSystemStartEventImpl</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ExternalSystemStartEventImpl</span>(compilerEventId, parentEventId, taskOperationDescriptorImpl);</span><br><span class="line">         <span class="type">ExternalSystemProgressEvent</span> <span class="variable">externalSystemFinishEventImpl</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ExternalSystemFinishEventImpl</span>(compilerEventId, parentEventId, taskOperationDescriptorImpl, <span class="keyword">new</span> <span class="title class_">FailureResultImpl</span>(externalSystemStartEventImpl.getEventTime(), externalSystemStartEventImpl.getEventTime(), CollectionsKt.listOf(<span class="keyword">new</span> <span class="title class_">FailureImpl</span>(message, message, CollectionsKt.emptyList()))));</span><br><span class="line">         listener.onStatusChange(<span class="keyword">new</span> <span class="title class_">ExternalSystemTaskExecutionEvent</span>(resolveTaskId, externalSystemStartEventImpl));</span><br><span class="line">         listener.onStatusChange(<span class="keyword">new</span> <span class="title class_">ExternalSystemTaskExecutionEvent</span>(resolveTaskId, externalSystemFinishEventImpl));</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h3><p>找到<code>compile_commands.json</code> 把所有含<code>ml64.exe</code> 相关的<code>commands</code>删掉(注意删掉的是一个整体)</p>
+<p>样例</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">[</span><span class="punctuation">&#123;</span> <span class="attr">&quot;directory&quot;</span><span class="punctuation">:</span> <span class="string">&quot;d:/aproject/openjdk/jdk17/make&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;file&quot;</span><span class="punctuation">:</span> <span class="string">&quot;d:/aproject/openjdk/jdk17/src/jdk.incubator.vector/windows/native/libsvml/svml_d_acos_windows_x86.S&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;command&quot;</span><span class="punctuation">:</span> <span class="string">&quot;c:/progra~2/micros~2/2017/commun~1/vc/tools/msvc/1416~1.270/bin/hostx86/x64/ml64.exe -nologo -c -Fod:/aproject/openjdk/jdk17/build/windows-x86_64-server-slowdebug/support/native/jdk.incubator.vector/libsvml/svml_d_acos_windows_x86.obj d:/aproject/openjdk/jdk17/src/jdk.incubator.vector/windows/native/libsvml/svml_d_acos_windows_x86.S&quot;</span> <span class="punctuation">&#125;</span><span class="punctuation">]</span></span><br></pre></td></tr></table></figure>
+
+<p>再重新导入一下即可</p>
+<p><code>Menu &gt; Tools &gt; Compilation Database &gt; Reload Compilation Database Project</code></p>
+<h1 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h1><p><a target="_blank" rel="noopener" href="https://blog.jetbrains.com/clion/2020/03/openjdk-with-clion/">Tips &amp; Tricks: Develop OpenJDK in CLion with Pleasure</a></p>
+<p><a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/8/docs/technotes/guides/vm/gctuning/">GC垃圾回收器 调整参数</a></p>
+<p><a target="_blank" rel="noopener" href="https://xie.infoq.cn/article/62e1635e0e9db1d091ec0ab16">不同版本 OpenJDK 源码调试方案</a></p>
+<p><a target="_blank" rel="noopener" href="https://oi-wiki.org/tools/wsl/">WSL</a></p>
+<p><a target="_blank" rel="noopener" href="https://lin1997.github.io/2020/07/19/debug-openjdk-on-ubuntu.html#%E7%94%9F%E6%88%90compilation-database">在Ubuntu中编译和调试OpenJDK </a></p>
+<p><a target="_blank" rel="noopener" href="http://www.huicentury.tech/post/2021-10-12-1%E3%80%90JVM%E3%80%91Build%20OpenJDK%2012">编译 openJDK</a></p>
+<p><a target="_blank" rel="noopener" href="https://linux.xiaosiseo.com/post/6776.html">Ubuntu下使用rpm</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/ykpkris/p/15058656.html">windows 平台编译openjdk12</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.python100.com/html/0J1T425OO6LT.html">tar教程</a></p>
+<p><a target="_blank" rel="noopener" href="https://jiawanggjia.github.io/post/openjdk-bian-yi-zhi-nan/">OpenJDK 编译指南(Ubuntu 16.04 + MacOS 10.15)</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_35136937/article/details/110531971">Cygwin</a></p>
+<p><a target="_blank" rel="noopener" href="https://jiawanggjia.github.io/post/openjdk-bian-yi-zhi-nan/">OpenJDK 编译指南(Ubuntu 16.04 + MacOS 10.15)</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/debug/" rel="tag"># debug</a>
+              <a href="/tags/openjdk/" rel="tag"># openjdk</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/09/08/jbpm%20%E5%BC%82%E5%B8%B8%E6%83%85%E5%86%B5%E5%88%86%E6%9E%90/" rel="prev" title="JBPM 异常分析.">
+                  <i class="fa fa-chevron-left"></i> JBPM 异常分析.
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2024/09/26/%E5%BC%80%E5%90%AF%E6%88%96%E5%85%B3%E9%97%ADNvidia%20DLSS%20indicator/" rel="next" title="开启或关闭Nvidia DLSS Indicator.">
+                  开启或关闭Nvidia DLSS Indicator. <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">sweetink</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/sweetink" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"sweetink","repo":"sweetink.github.io","client_id":"760a63305bc761942991","client_secret":"24d5b422197b6ccb31f208abb6c88f79a8b5b252","admin_user":"sweetink","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"ff9903b2d174473df9896592f58cbe69"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

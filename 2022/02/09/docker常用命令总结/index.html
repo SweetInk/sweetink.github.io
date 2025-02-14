@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha256-/4UQcSmErDzPCMAiuOiWPVVsNN2s3ZY/NsmXNcj0IFc=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"yoursite.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.15.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"default"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="DOCKER查看指定服务名的日志（只有一个服务实列）docker service ps t_mserv_espare|grep Running|awk &#39;&amp;#123;print $1&amp;#125;&#39;|xargs docker service logs -f 构建镜像 docker build -t &lt;TAG_NAME&gt; &lt;Dockerfile_PATH&gt; 运行">
+<meta property="og:type" content="article">
+<meta property="og:title" content="docker常用命令总结.">
+<meta property="og:url" content="http://yoursite.com/2022/02/09/docker%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="随记">
+<meta property="og:description" content="DOCKER查看指定服务名的日志（只有一个服务实列）docker service ps t_mserv_espare|grep Running|awk &#39;&amp;#123;print $1&amp;#125;&#39;|xargs docker service logs -f 构建镜像 docker build -t &lt;TAG_NAME&gt; &lt;Dockerfile_PATH&gt; 运行">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-02-09T03:05:13.000Z">
+<meta property="article:modified_time" content="2023-03-14T16:44:27.886Z">
+<meta property="article:author" content="sweetink">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://yoursite.com/2022/02/09/docker%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://yoursite.com/2022/02/09/docker%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/","path":"2022/02/09/docker常用命令总结/","title":"docker常用命令总结."}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>docker常用命令总结. | 随记</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">随记</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">......</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-demo"><a href="/demo/" rel="section"><i class="fa fa-flask fa-fw"></i>demo</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#DOCKER"><span class="nav-number">1.</span> <span class="nav-text">DOCKER</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DockerFile"><span class="nav-number">2.</span> <span class="nav-text">DockerFile</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#COPY-SRC-DEST"><span class="nav-number">2.1.</span> <span class="nav-text">COPY SRC DEST</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ADD-SRC-DEST"><span class="nav-number">2.2.</span> <span class="nav-text">ADD SRC DEST</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CMD-cmd-args%E2%80%A6"><span class="nav-number">2.3.</span> <span class="nav-text">CMD cmd args…</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RUN-cmd-args%E2%80%A6"><span class="nav-number">2.4.</span> <span class="nav-text">RUN cmd args…</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%97%A5%E5%BF%97"><span class="nav-number">3.</span> <span class="nav-text">日志</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E6%97%A5%E5%BF%97%E9%80%9A%E8%BF%87%E6%9C%8D%E5%8A%A1%E5%90%8D"><span class="nav-number">3.1.</span> <span class="nav-text">查询日志通过服务名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E6%97%A5%E5%BF%97%E9%80%9A%E8%BF%87taskId"><span class="nav-number">3.2.</span> <span class="nav-text">查询日志通过taskId</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">sweetink</p>
+  <div class="site-description" itemprop="description">Always remember us this way</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">79</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/09/docker%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="sweetink">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="随记">
+      <meta itemprop="description" content="Always remember us this way">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="docker常用命令总结. | 随记">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          docker常用命令总结.
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-02-09 11:05:13" itemprop="dateCreated datePublished" datetime="2022-02-09T11:05:13+08:00">2022-02-09</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="DOCKER"><a href="#DOCKER" class="headerlink" title="DOCKER"></a>DOCKER</h1><p>查看指定服务名的日志（只有一个服务实列）<br><code>docker service ps t_mserv_espare|grep Running|awk &#39;&#123;print $1&#125;&#39;|xargs docker service logs -f</code></p>
+<p>构建镜像</p>
+<p><code>docker build -t &lt;TAG_NAME&gt; &lt;Dockerfile_PATH&gt;</code></p>
+<p>运行镜像</p>
+<p><code>docker run -d -p 3000:3000/tcp -v /d:\\test:/home/test gettingg-started</code></p>
+<p> <code>-d(etach)</code> 后台模式运行 <code>-p(ublish) &lt;hostPort&gt;:&lt;containerPort&gt;/&lt;protocol[tpc,udp...]&gt;</code> 端口映射</p>
+<p><code>-v(olume)</code> 磁盘映射 <code>hostPath</code>:<code>containerPath</code></p>
+<p>查看镜像列表</p>
+<p><code>docker images</code></p>
+<p>查看容器实例列表</p>
+<p><code>docker ps</code> 或者 <code>docker container ls</code></p>
+<p>查看实例中运行的程序的<code>STD_OUT</code>(标准输出)(eg:c语言中的<code>print/printf</code>,node:<code>console.log</code>,java:<code>System.out</code>…)</p>
+<p><code>docker logs &lt;containerId&gt;</code></p>
+<p>运行当前运行中容器中的命令</p>
+<p><code> docker exec [OPTIONS] CONTAINER COMMAND [ARG...]</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Options:</span><br><span class="line">  -d, --detach               Detached mode: run command in the background</span><br><span class="line">      --detach-keys string   Override the key sequence for detaching a</span><br><span class="line">                             container</span><br><span class="line">  -e, --env list             Set environment variables</span><br><span class="line">  -i, --interactive          Keep STDIN open even if not attached</span><br><span class="line">      --privileged           Give extended privileges to the command</span><br><span class="line">  -t, --tty                  Allocate a pseudo-TTY</span><br><span class="line">  -u, --user string          Username or UID (format:</span><br><span class="line">                             &lt;name|uid&gt;[:&lt;group|gid&gt;])</span><br><span class="line">  -w, --workdir string       Working directory inside the container</span><br></pre></td></tr></table></figure>
+
+<p>eg: <code>docker exec -it 12e /bin/sh</code></p>
+<p>执行上述命令后会会自动连接到目标容易的终端</p>
+<p>删除容器</p>
+<p>&#96;docker rm -f <container_id></p>
+<p>创建服务</p>
+<p><code>docker service create [OPTIONS] IMAGE [COMMAND] [ARG...]</code></p>
+<p>强制重启服务</p>
+<p><code>docker service update your_service_name --force</code></p>
+<p>查看service的containerId</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">for f in $(docker service ps -q t_mserv_base_mq);do docker inspect --format &#x27;&#123;&#123;.ServiceID&#125;&#125; &#123;&#123;.NodeID&#125;&#125; &#123;&#123;.Status.ContainerStatus.ContainerID&#125;&#125; &#123;&#123;.DesiredState&#125;&#125;&#x27; $f; done</span><br></pre></td></tr></table></figure>
+
+<p>docker 容器可视化</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker pull dockersamples/visualizer:latest</span><br><span class="line">docker service create \</span><br><span class="line">--name=viz \</span><br><span class="line">--publish=12306:8080/tcp \</span><br><span class="line">--constraint=node.role==manager \</span><br><span class="line">--mount=type=bind,src=/var/run/docker.sock,dst=/var/run/docker.sock \</span><br><span class="line">dockersamples/visualizer:latest</span><br></pre></td></tr></table></figure>
+
+<h1 id="DockerFile"><a href="#DockerFile" class="headerlink" title="DockerFile"></a>DockerFile</h1><h2 id="COPY-SRC-DEST"><a href="#COPY-SRC-DEST" class="headerlink" title="COPY SRC DEST"></a>COPY SRC DEST</h2><p>复制src文件到dest</p>
+<h2 id="ADD-SRC-DEST"><a href="#ADD-SRC-DEST" class="headerlink" title="ADD SRC DEST"></a>ADD SRC DEST</h2><p>复制src文件到dest,如果src为压缩文件，怎复制和自动解压</p>
+<h2 id="CMD-cmd-args…"><a href="#CMD-cmd-args…" class="headerlink" title="CMD cmd args…"></a>CMD cmd args…</h2><p>在<code>docker run</code> 时运行</p>
+<h2 id="RUN-cmd-args…"><a href="#RUN-cmd-args…" class="headerlink" title="RUN cmd args…"></a>RUN cmd args…</h2><p>在<code>docker build</code>时运行，可能</p>
+<p>HEX(NUM) -&gt; DECIMAL<br>int r&#x3D; (int)(NUM &#x2F; 10)*16 + NUM%10</p>
+<h1 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h1><p><code>docker service logs --help</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Usage:  docker service logs [OPTIONS] SERVICE|TASK</span><br><span class="line"></span><br><span class="line">Fetch the logs of a service or task</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line">      --details        Show extra details provided to logs</span><br><span class="line">  -f, --follow         Follow log output</span><br><span class="line">      --no-resolve     Do not map IDs to Names in output</span><br><span class="line">      --no-task-ids    Do not include task IDs in output</span><br><span class="line">      --no-trunc       Do not truncate output</span><br><span class="line">      --raw            Do not neatly format logs</span><br><span class="line">      --since string   Show logs since timestamp (e.g. 2013-01-02T13:23:37Z) or relative (e.g. 42m for 42 minutes)</span><br><span class="line">  -n, --tail string    Number of lines to show from the end of the logs (default &quot;all&quot;)</span><br><span class="line">  -t, --timestamps     Show timestamps</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>eg：</p>
+<h2 id="查询日志通过服务名"><a href="#查询日志通过服务名" class="headerlink" title="查询日志通过服务名"></a>查询日志通过服务名</h2><p><code>docker service logs t_mserv_xgb_project --since 2022-04-22</code></p>
+<h2 id="查询日志通过taskId"><a href="#查询日志通过taskId" class="headerlink" title="查询日志通过taskId"></a>查询日志通过taskId</h2><p>获取服务对应的taskId</p>
+<p><code>docker service ps t_mserv_xgb_project</code></p>
+<p>通过taskId获取日志输出 </p>
+<p><code>docker service logs taskId --since 2022-04-22</code></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/10/26/LOL%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6%E8%B7%AF%E5%BE%84%E8%AF%B4%E6%98%8E/" rel="prev" title="LOL资源文件路径说明.">
+                  <i class="fa fa-chevron-left"></i> LOL资源文件路径说明.
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/02/17/spring%20security%20tokenStore%20keys/" rel="next" title="spring security tokenStore keys.">
+                  spring security tokenStore keys. <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">sweetink</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/sweetink" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"sweetink","repo":"sweetink.github.io","client_id":"760a63305bc761942991","client_secret":"24d5b422197b6ccb31f208abb6c88f79a8b5b252","admin_user":"sweetink","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"c125e7206122458815dda97845c84bd9"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>
